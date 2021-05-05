@@ -1,11 +1,46 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <div id="nav">
+      <Navbar />
+      <router-view/>
+    </div>
+    <Content msg="내용입니다."/>
   </div>
-  <router-view/>
+  <Footer />
 </template>
 
+<script>
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import Content from '@/components/Content'
+
+export default {
+  name: 'Home',
+  components: {
+    Navbar,
+    Footer,
+    Content
+  }
+}
+
+</script>
+
 <style>
+
+#app {
+  font-family: Avenir,
+  Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-top: 40px;
+  font-size: 20px;
+  padding: 10px;
+  word-spacing: 10px;
+}
+
+#nav {
+  background: darkcyan;
+  padding: 15px;
+}
 
 </style>
