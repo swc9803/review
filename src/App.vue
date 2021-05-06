@@ -32,14 +32,14 @@ export default {
   Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 20px;
   padding: 10px;
-  word-spacing: 10px;
 }
 
 #nav {
   background: darkcyan;
+  color: white;
   padding: 15px;
 }
 

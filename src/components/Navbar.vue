@@ -1,13 +1,23 @@
 <template>
-  <router-link class="navbar-brand" :to="{ name: 'Home'}">
-    Home
-  </router-link>
-  <router-link class="nav-link" :to="{ name: 'Review'}">
-    Review
-  </router-link>
-  <router-link class="nav-link" :to="{ name: 'QnA'}">
-    QnA
-  </router-link>
+  <nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'Home'}">
+          Home
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'Review'}">
+          Review
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'QnA'}">
+          QnA
+        </router-link>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -17,5 +27,8 @@ export default {
 </script>
 
 <style>
-
+.nav-link {
+  color: greenyellow;
+  font-size: 30px;
+}
 </style>

@@ -14,9 +14,6 @@ export default {
 }
 </script>
 
-<style scoped>
-#home {
-    color: white;
-    font-size: 15px;
-    }
+<style>
+
 </style>
