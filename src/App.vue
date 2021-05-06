@@ -1,10 +1,7 @@
 <template>
+  <Navbar id="nav"/>
   <div>
-    <div id="nav">
-      <router-view/>
-      <Navbar />
-    </div>
-    <Content/>
+    <router-view/>
   </div>
   <Footer />
 </template>
@@ -12,14 +9,12 @@
 <script>
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Content from '@/components/Content'
 
 export default {
   name: 'Home',
   components: {
     Navbar,
-    Footer,
-    Content
+    Footer
   }
 }
 
@@ -33,7 +28,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 25px;
   padding: 5px;
 }
 

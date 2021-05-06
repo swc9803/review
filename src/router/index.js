@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../pages/home'
+import Home from '../pages/Home'
 import Review from '../pages/Review'
 import QnA from '../pages/QnA'
 
