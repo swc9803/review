@@ -14,6 +14,16 @@
           QnA
         </router-link>
       </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'Board'}">
+          Board
+        </router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'Trading'}">
+          Trading
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>

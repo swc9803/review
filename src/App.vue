@@ -35,7 +35,7 @@ export default {
 #nav {
   background: darkcyan;
   color: white;
-  padding: 15px;
+  padding: 10px;
 }
 
 </style>
