@@ -4,7 +4,7 @@
       <router-view/>
       <Navbar />
     </div>
-    <Content msg="내용입니다."/>
+    <Content/>
   </div>
   <Footer />
 </template>

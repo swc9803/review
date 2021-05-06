@@ -1,14 +1,20 @@
 <template>
-    <div>
-        {{ msg }}
+    <div :key="Content">
+      <img :src="Content"/>
     </div>
 </template>
 
 <script>
+
 export default {
-  name: 'Content',
-  props: {
-    msg: String
+  data () {
+    return {
+      Content: [
+        {
+          Content: require('../assets/review.jpg')
+        }
+      ]
+    }
   }
 }
 </script>
@@ -17,5 +23,6 @@ export default {
 content {
     padding: 10px;
     margin: 20px;
+    border: black;
 }
 </style>
