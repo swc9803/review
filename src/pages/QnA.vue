@@ -1,6 +1,6 @@
 <template>
     <div>
-      현재QnA페이지입니다.
+      QnA페이지입니다.
     </div>
 </template>
 

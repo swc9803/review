@@ -1,8 +1,8 @@
 <template>
     <div>
-      <img style="width:200px" src="@/assets/review.jpg" alt="리뷰사진">
+      <img style="width:400px" src="@/assets/recruit.jpg" alt="리뷰사진">
       <br>
-      리뷰하는 웹 사이트입니다.
+      Recruit 사이트입니다.
     </div>
 </template>
 
@@ -15,6 +15,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  div{
+    font-size: 40px;
+  }
 </style>

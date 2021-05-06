@@ -1,6 +1,6 @@
 <template>
     <div>
-        trading
+        rdsa
     </div>
 </template>
 
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
 </style>

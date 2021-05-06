@@ -5,8 +5,8 @@
     </router-link>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'Review'}">
-          Review
+        <router-link class="nav-link" :to="{ name: 'Recruit'}">
+          Recruit
         </router-link>
       </li>
       <li class="nav-item active">
@@ -17,11 +17,6 @@
       <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Board'}">
           Board
-        </router-link>
-      </li>
-      <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'Trading'}">
-          Trading
         </router-link>
       </li>
     </ul>
