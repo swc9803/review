@@ -1,23 +1,21 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-light">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'Home'}">
-          Home
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'Review'}">
-          Review
-        </router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" :to="{ name: 'QnA'}">
-          QnA
-        </router-link>
-      </li>
-    </ul>
-  </nav>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <router-link class="nav-link" :to="{ name: 'Home'}">
+        Home
+      </router-link>
+    </li>
+    <li class="nav-item">
+      <router-link class="nav-link" :to="{ name: 'Review'}">
+        Review
+      </router-link>
+    </li>
+    <li class="nav-item">
+      <router-link class="nav-link" :to="{ name: 'QnA'}">
+        QnA
+      </router-link>
+    </li>
+  </ul>
 </template>
 
 <script>

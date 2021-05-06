@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="nav">
-      <Navbar />
       <router-view/>
+      <Navbar />
     </div>
     <Content msg="내용입니다."/>
   </div>
@@ -34,7 +34,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   margin-top: 20px;
   font-size: 20px;
-  padding: 10px;
+  padding: 5px;
 }
 
 #nav {
