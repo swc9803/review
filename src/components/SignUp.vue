@@ -1,9 +1,9 @@
 <template>
     <div class="signup">
       <p>Sign Up</p>
-      <input class="left" type="text" v-model="email" placeholder="이메일"> <br>
-      <input class="left" type="password" v-model="password" placeholder="패스워드"> <br>
-      <button @click="SignUp">회원가입</button>
+      <input class="left" type="text" style="width:300px" v-model="email" placeholder="이메일"> <br>
+      <input class="left" type="password" style="width:300px" v-model="password" placeholder="패스워드"> <br>
+      <button class="btn btn-primary" style="width:100px" @click="SignUp">회원가입</button>
       <h6>이미 가입된 아이디가 있으신가요?</h6>
       <router-link :to="{ name: 'Login'}">로그인 하러 가기</router-link>
     </div>
@@ -36,27 +36,30 @@ export default {
 </script>
 
 <style scoped>
-    * {
-        text-align: center;
-    }
-    .left {
-        text-align: left;
-    }
-    .signup {
-        margin-top: 40px;
-    }
-    input {
-        margin: 10px;
-        width: 20%;
-        padding: 15px;
-    }
-    button {
-        margin-top: 20px;
-        width: 10%;
-        cursor: pointer;
-    }
-    p {
-        margin-top: 40px;
-        font-size: 20px;
-    }
+  * {
+      text-align: center;
+  }
+  .left {
+      text-align: left;
+  }
+  .signup {
+      margin-top: 40px;
+  }
+  input {
+      margin: 10px;
+      width: 20%;
+      padding: 15px;
+  }
+  button {
+      margin-top: 20px;
+      width: 10%;
+      cursor: pointer;
+  }
+  p {
+      margin-top: 40px;
+      font-size: 20px;
+  }
+  h6 {
+    margin-top: 10px;
+  }
 </style>

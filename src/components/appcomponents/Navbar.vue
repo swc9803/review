@@ -1,13 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="nav-brand" :to="{ name: 'Home'}">
+    <router-link :to="{ name: 'Home'}">
       Home
     </router-link>
-      <button class="btn btn-secondary">
-        <router-link class="Login" :to="{ name: 'Login'}">
-          로그인
-        </router-link>
-      </button>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Recruit'}">
@@ -25,6 +20,20 @@
         </router-link>
       </li>
     </ul>
+    <div>
+      <button class="btn btn-primary">
+        <router-link class="Login" :to="{ name: 'Login'}">
+          로그인
+        </router-link>
+      </button>
+      <div>
+        <button class="btn btn-secondary" style="width:100px">
+          <router-link class="Login" :to="{ name: 'SignUp'}">
+            회원가입
+          </router-link>
+        </button>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -34,9 +43,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .nav-link {
-  color: greenyellow;
   font-size: 20px;
 }
+.Login {
+  color: white;
+}
+
 </style>
