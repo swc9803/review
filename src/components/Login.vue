@@ -51,11 +51,15 @@ export default {
     width: 20%;
     padding: 15px;
   }
+    button {
+    margin-top: 20px;
+    width: 10%;
+  }
   p {
     margin-top: 40px;
     font-size: 20px;
   }
   h6 {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 </style>

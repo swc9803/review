@@ -37,29 +37,29 @@ export default {
 
 <style scoped>
   * {
-      text-align: center;
+    text-align: center;
   }
   .left {
-      text-align: left;
+    text-align: left;
   }
   .signup {
-      margin-top: 40px;
+    margin-top: 40px;
+    font-size: 15px;
   }
   input {
-      margin: 10px;
-      width: 20%;
-      padding: 15px;
+    margin: 10px;
+    width: 20%;
+    padding: 15px;
   }
   button {
-      margin-top: 20px;
-      width: 10%;
-      cursor: pointer;
+    margin-top: 20px;
+    width: 10%;
   }
   p {
-      margin-top: 40px;
-      font-size: 20px;
+    margin-top: 40px;
+    font-size: 20px;
   }
   h6 {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 </style>
