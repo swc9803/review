@@ -2,7 +2,7 @@
     <div class="des">
       <img style="width:100%; height:100%" src="@/assets/recruit.jpg" alt="리뷰사진">
       <br>
-      Recruit 사이트입니다.
+      Review 사이트입니다.
     </div>
     <div class="des">
       <img style="width:100%; height:100%" src="@/assets/why.jpg" alt="왜">

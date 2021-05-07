@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <router-link :to="{ name: 'Home'}">
       Home
     </router-link>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'Recruit'}">
-          Recruit
+        <router-link class="nav-link" :to="{ name: 'Review'}">
+          Review
         </router-link>
       </li>
       <li class="nav-item active">
@@ -46,6 +46,7 @@ export default {
 <style scoped>
 .nav-link {
   font-size: 20px;
+  margin-left: 20px;
 }
 .Login {
   color: white;

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/home'
-import Recruit from '../pages/Recruit'
+import Review from '../pages/Review'
 import QnA from '../pages/QnA'
 import Board from '../pages/Board'
 import Login from '@/components/Login'
@@ -15,9 +15,9 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/recruit',
-      name: 'Recruit',
-      component: Recruit
+      path: '/review',
+      name: 'Review',
+      component: Review
     },
     {
       path: '/qna',
