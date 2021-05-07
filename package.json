@@ -11,6 +11,8 @@
     "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.12.0",
+    "firebase": "^8.5.0",
+    "firebase-tools": "^9.10.2",
     "vue": "^3.0.11",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -25,10 +27,13 @@
     "@vue/eslint-config-standard": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^4.1.0",
-    "eslint-plugin-vue": "^7.9.0"
+    "eslint-plugin-vue": "^7.9.0",
+    "prettier-eslint": "^12.0.0"
   }
 }
