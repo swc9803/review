@@ -7,13 +7,12 @@ import firebase from 'firebase'
 createApp(App).use(store).use(router).mount('#app')
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCd7mEYgQlLjU5lruFqRyqi2zV6ek2C-sQ',
-  authDomain: 'recruit-62805.firebaseapp.com',
-  databaseURL: 'https://recruit-62805-default-rtdb.firebaseio.com',
-  projectId: 'recruit-62805',
-  storageBucket: 'recruit-62805.appspot.com',
-  messagingSenderId: '85948287390',
-  appId: '1:85948287390:web:69750497b0d50f9d34ae8f',
-  measurementId: 'G-6GYM404949'
+  apiKey: 'AIzaSyA8qqqeszhsXlKi_kIZTKlCXnfLo_lBWaw',
+  authDomain: 'rhdyd-a7e3b.firebaseapp.com',
+  projectId: 'rhdyd-a7e3b',
+  storageBucket: 'rhdyd-a7e3b.appspot.com',
+  messagingSenderId: '316902768690',
+  appId: '1:316902768690:web:06bc8c4b62fe8150697c2b',
+  measurementId: 'G-6TTHN5HP14'
 }
 firebase.initializeApp(firebaseConfig)
