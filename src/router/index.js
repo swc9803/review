@@ -3,6 +3,8 @@ import Home from '../pages/home'
 import Recruit from '../pages/Recruit'
 import QnA from '../pages/QnA'
 import Board from '../pages/Board'
+import Login from '@/components/Login'
+import SignUp from '@/components/SignUp'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,19 +15,29 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/Recruit',
+      path: '/recruit',
       name: 'Recruit',
       component: Recruit
     },
     {
-      path: '/QnA',
+      path: '/qna',
       name: 'QnA',
       component: QnA
     },
     {
-      path: '/Board',
+      path: '/board',
       name: 'Board',
       component: Board
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
 })
