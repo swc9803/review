@@ -1,8 +1,8 @@
 <template>
     <div class="login">
         <h3>Login</h3>
-        <input class="left" type="text" placeholder="이메일"> <br>
-        <input class="left" type="password" placeholder="패스워드"> <br>
+        <input class="left" type="text" v-model="email" placeholder="이메일"> <br>
+        <input class="left" type="password" v-model="password" placeholder="패스워드"> <br>
         <button @click="Login">로그인</button>
         <h6>아이디가 없으신가요? 회원가입을 해주세요</h6>
         <router-link :to="{ name: 'SignUp'}">회원가입 하러 가기</router-link>
@@ -10,15 +10,26 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'login',
   data () {
     return {
+      email: '',
+      password: ''
     }
   },
   methods: {
     Login () {
-      this.$router.replace('/')
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        function (user) {
+          alert('로그인되었습니다.')
+        },
+        function (err) {
+          alert('에러 : ' + err.message)
+        }
+      )
     }
   }
 }
