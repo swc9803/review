@@ -3,6 +3,11 @@
     <router-link class="nav-brand" :to="{ name: 'Home'}">
       Home
     </router-link>
+      <button class="btn btn-secondary">
+        <router-link class="Login" :to="{ name: 'Login'}">
+          로그인
+        </router-link>
+      </button>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Recruit'}">

@@ -31,10 +31,4 @@ export default {
   font-size: 25px;
   padding: 5px;
 }
-
-#nav {
-  background: darkcyan;
-  color: white;
-  padding: 10px;
-}
 </style>
