@@ -17,7 +17,7 @@
     <div class="des">
       <img style="width:100%; height:100%" src="@/assets/doit.jpg" alt="해">
       <br>
-      당장 하십시오ds
+      당장 하십시오dsdd
     </div>
 </template>
 
