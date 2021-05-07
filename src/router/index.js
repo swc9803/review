@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/home'
 import Review from '../pages/Review'
+import PlzReview from '../pages/PlzReview'
+import Hot from '../pages/Hot'
 import QnA from '../pages/QnA'
 import Board from '../pages/Board'
 import Login from '@/components/Login'
@@ -18,6 +20,16 @@ const router = createRouter({
       path: '/review',
       name: 'Review',
       component: Review
+    },
+    {
+      path: '/plzreview',
+      name: 'PlzReview',
+      component: PlzReview
+    },
+    {
+      path: '/hot',
+      name: 'Hot',
+      component: Hot
     },
     {
       path: '/qna',

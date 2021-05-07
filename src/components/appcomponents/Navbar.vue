@@ -10,6 +10,16 @@
         </router-link>
       </li>
       <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'PlzReview'}">
+          PlzReview
+        </router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'Hot'}">
+          <i class="fas fa-fire"></i>Hot
+        </router-link>
+      </li>
+      <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'QnA'}">
           QnA
         </router-link>
@@ -38,6 +48,7 @@
 </template>
 
 <script>
+
 export default {
 
 }
@@ -50,6 +61,9 @@ export default {
 }
 .Login {
   color: white;
+}
+i {
+  color: red;
 }
 
 </style>

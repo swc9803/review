@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>맨 아래입니다.</p>
+        <p>서울특별시 석관동<br>전화 번호 01012345678</p>
     </footer>
 </template>
 

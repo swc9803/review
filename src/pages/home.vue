@@ -7,7 +7,7 @@
     <div class="des">
       <img style="width:100%; height:100%" src="@/assets/why.jpg" alt="왜">
       <br>
-      간단한 잡일 시키려고
+      리뷰를 공유하기 위해
     </div>
     <div class="des">
       <img style="width:100%; height:100%" src="@/assets/easy.jpg" alt="쉬움">
