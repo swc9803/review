@@ -13,6 +13,9 @@
 import firebase from 'firebase'
 
 export default {
+  setup () {
+
+  },
   name: 'SignUp',
   data () {
     return {
@@ -26,6 +29,9 @@ export default {
         function (user) {
           alert('회원가입완료')
         },
+        this.$router.push({
+          name: 'Home'
+        }),
         function (err) {
           alert('에러 : ' + err.message)
         }

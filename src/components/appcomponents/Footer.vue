@@ -17,5 +17,7 @@ footer {
     font-size: 16px;
     color: black;
     margin: 100px 0 0 0;
+    position: inherit;
+    bottom: 0;
 }
 </style>
