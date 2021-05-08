@@ -7,6 +7,7 @@ import QnA from '../pages/QnA'
 import Board from '../pages/Board'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Create from '@/components/board/Create'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/signup',
       name: 'SignUp',
       component: SignUp
+    },
+    {
+      path: '/create',
+      name: 'Create',
+      component: Create
     }
   ]
 })

@@ -3,7 +3,7 @@
       <p>Login</p>
       <input class="left" type="text" style="width:300px" v-model="email" placeholder="이메일"> <br>
       <input class="left" type="password" style="width:300px" v-model="password" placeholder="패스워드"> <br>
-      <button class="btn btn-primary" @click="Login">로그인</button>
+      <button class="btn btn-primary" style="width:100px" @click="Login">로그인</button>
       <h6>아이디가 없으신가요? 회원가입을 해주세요</h6>
       <router-link :to="{ name: 'SignUp'}">회원가입 하러 가기</router-link>
     </div>
