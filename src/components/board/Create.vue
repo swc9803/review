@@ -3,12 +3,12 @@
     <label>Title</label>
     <div class="row">
       <div class="col-6">
-        <input type="text" class="form-control" style="width: 300px" v-model="form.title">
+        <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
       </div>
       <div class="col-12">
         <div class="form-group">
           <label>Content</label>
-          <textarea class="form-control" cols="30" rows="10" v-model="form.content"></textarea>
+          <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
         </div>
       </div>
     </div>
@@ -23,10 +23,7 @@ import firebase from 'firebase'
 export default {
   data () {
     return {
-      items: [],
       form: {
-        title: '',
-        content: ''
       }
     }
   },
@@ -36,17 +33,17 @@ export default {
         name: 'Board'
       })
     },
-    save (key) {
-      firebase.firestore().collection('boards').doc(key)
-        .update({
-          title: this.title,
-          content: this.content
-        }).then(function () {
-          alert('save')
-        }).catch(function (error) {
+    save (e) {
+      e.preventDefault()
+      firebase.collection('forms').add(this.form).then(() => {
+        alert('Saved!')
+        this.user.name = ''
+        this.user.email = ''
+        this.user.phone = ''
+      })
+        .catch((error) => {
           alert('Error : ' + error.message)
         })
-      // this.$firebase.firestore().collection('boards').add(this.form)
     }
   }
 }
