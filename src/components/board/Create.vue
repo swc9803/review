@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit="saveform">
     <label>Title</label>
     <div>
     <div class="row">
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import db from '@/main.js'
+import { db } from '@/fdb'
 
 export default {
   data () {
@@ -35,7 +35,8 @@ export default {
         name: 'Board'
       })
     },
-    saveform () {
+    saveform (e) {
+      e.preventDefault()
       db.firestore().collection('form').add(this.form).then(() => {
         alert('Saved!')
         this.form.title = ''
@@ -44,6 +45,11 @@ export default {
         .catch((error) => {
           alert('Error : ' + error.message)
         })
+    },
+    setup () {
+      return {
+        db
+      }
     }
   }
 }
