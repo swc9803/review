@@ -33,13 +33,11 @@ export default {
         name: 'Board'
       })
     },
-    save (e) {
-      e.preventDefault()
-      firebase.collection('forms').add(this.form).then(() => {
+    save () {
+      firebase.firestore().collection('form').add(this.form).then(() => {
         alert('Saved!')
-        this.user.name = ''
-        this.user.email = ''
-        this.user.phone = ''
+        this.form.title = ''
+        this.form.content = ''
       })
         .catch((error) => {
           alert('Error : ' + error.message)
