@@ -1,5 +1,5 @@
 <template>
-  <form @click="saveform">
+  <form>
     <div>
     <label>Title</label>
       <div class="row">
@@ -13,10 +13,10 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary">Save</button>
-      <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
     </div>
   </form>
+<button class="btn btn-primary" @click="saveform">Save</button>
+<button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
 </template>
 
 <script>
