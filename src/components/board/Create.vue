@@ -1,6 +1,6 @@
 <template>
+<div class="form">
   <form>
-    <div>
     <label>Title</label>
       <div class="row">
         <div class="col-6">
@@ -9,14 +9,14 @@
         <div class="col-12">
           <div class="form-group">
             <label>Content</label>
-            <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+            <textarea class="form-control" cols="30" rows="10" style="width: 70%" v-model="form.content" required></textarea>
           </div>
         </div>
       </div>
-    </div>
   </form>
 <button class="btn btn-primary" @click="saveform">Save</button>
 <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
+</div>
 </template>
 
 <script>
@@ -44,15 +44,12 @@ export default {
         .catch((error) => {
           alert('Error : ' + error.message)
         })
-    },
-    setup () {
-      return {
-        db
-      }
     }
   }
 }
 </script>
-<style>
-
+<style scoped>
+  .form {
+    margin-left: 60px;
+  }
 </style>
