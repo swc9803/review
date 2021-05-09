@@ -1,7 +1,6 @@
 <template>
   <form>
     <label>Title</label>
-    <button @click="read" class="btn btn-primary ml-4">Read</button>
     <div class="row">
       <div class="col-6">
         <input type="text" class="form-control" style="width: 300px" v-model="form.title">
@@ -19,6 +18,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 
 export default {
   data () {
@@ -36,18 +36,17 @@ export default {
         name: 'Board'
       })
     },
-    save () {
-      this.$firebase.firestore().collection('boards').add(this.form)
-    },
-    async read () {
-      const sn = await this.$firebase.firestore().collection('boards').get()
-      this.items = sn.docs.map(v => {
-        const item = v.data()
-        return {
-          id: v.id, title: item.title, content: item.content
-        }
-      })
-      console.log(this.items)
+    save (key) {
+      firebase.firestore().collection('boards').doc(key)
+        .update({
+          title: this.title,
+          content: this.content
+        }).then(function () {
+          alert('save')
+        }).catch(function (error) {
+          alert('Error : ' + error.message)
+        })
+      // this.$firebase.firestore().collection('boards').add(this.form)
     }
   }
 }
