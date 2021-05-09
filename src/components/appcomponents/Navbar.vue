@@ -31,16 +31,12 @@
       </li>
     </ul>
       <div>
-        <button class="btn btn-primary">
-          <router-link id="Login" class="fa fa-sign-in" :to="{ name: 'Login'}">
-            로그인
-          </router-link>
+        <button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary">
+          로그인
         </button>
         <div>
-        <button class="btn btn-secondary" style="width:100px">
-          <router-link id="Login" :to="{ name: 'SignUp'}">
-            회원가입
-          </router-link>
+        <button style="width:100px; height: 35px" @click="moveToSignUp" class="btn btn-secondary">
+          회원가입
         </button>
       </div>
     </div>
@@ -50,7 +46,18 @@
 <script>
 
 export default {
-
+  methods: {
+    moveToLogin () {
+      this.$router.push({
+        name: 'Login'
+      })
+    },
+    moveToSignUp () {
+      this.$router.push({
+        name: 'SignUp'
+      })
+    }
+  }
 }
 </script>
 
@@ -58,9 +65,6 @@ export default {
 .nav-link {
   font-size: 20px;
   margin-left: 20px;
-}
-#Login {
-  color: white;
 }
 i {
   color: red;
