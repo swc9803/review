@@ -1,20 +1,20 @@
 <template>
-  <form @submit="saveform">
-    <label>Title</label>
+  <form @click="saveform">
     <div>
-    <div class="row">
-      <div class="col-6">
-        <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
-      </div>
-      <div class="col-12">
-        <div class="form-group">
-          <label>Content</label>
-          <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+    <label>Title</label>
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>Content</label>
+            <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+          </div>
         </div>
       </div>
-    </div>
-    <button class="btn btn-primary" @click="saveform">Save</button>
-    <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
+      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
     </div>
   </form>
 </template>
@@ -35,9 +35,8 @@ export default {
         name: 'Board'
       })
     },
-    saveform (e) {
-      e.preventDefault()
-      db.firestore().collection('form').add(this.form).then(() => {
+    saveform () {
+      db.collection('form').add(this.form).then(() => {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
