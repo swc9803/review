@@ -1,6 +1,7 @@
 <template>
   <form>
     <label>Title</label>
+    <div>
     <div class="row">
       <div class="col-6">
         <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
@@ -12,13 +13,14 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" @click="save">Save</button>
+    <button class="btn btn-primary" @click="saveform">Save</button>
     <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
+    </div>
   </form>
 </template>
 
 <script>
-import firebase from 'firebase'
+import db from '@/main.js'
 
 export default {
   data () {
@@ -33,8 +35,8 @@ export default {
         name: 'Board'
       })
     },
-    save () {
-      firebase.firestore().collection('form').add(this.form).then(() => {
+    saveform () {
+      db.firestore().collection('form').add(this.form).then(() => {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
