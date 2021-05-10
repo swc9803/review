@@ -16,16 +16,21 @@
   </form>
 <button class="btn btn-primary" @click="saveform">Save</button>
 <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
+<button class="btn btn-primary" @click="read">read</button>
 </div>
 </template>
 
 <script>
 import { db } from '@/fdb'
+import 'firebase/firebase-firestore'
 
 export default {
   data () {
     return {
+      items: [],
       form: {
+        title: '',
+        content: ''
       }
     }
   },
@@ -36,7 +41,7 @@ export default {
       })
     },
     saveform () {
-      db.collection('form').add(this.form).then(() => {
+      db.collection('forms').doc('form').set(this.form).then(() => {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
@@ -44,6 +49,15 @@ export default {
         .catch((error) => {
           alert('Error : ' + error.message)
         })
+    },
+    read () {
+      const dd = db.collection('forms').doc('form')
+      const doc = dd.get()
+      if (!doc.exists) {
+        console.log('No such document!')
+      } else {
+        console.log('Document data:', doc.data())
+      }
     }
   }
 }
