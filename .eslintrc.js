@@ -8,7 +8,6 @@ module.exports = {
     '@vue/standard'
   ],
   parserOptions: {
-    ecmaVersion: 8,
     parser: 'babel-eslint'
   },
   rules: {
