@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <router-link class="fa fa-home" :to="{ name: 'Home'}">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light ml-2">
+    <router-link class="fa fa-home ml-4" :to="{ name: 'Home'}">
       Home
     </router-link>
     <ul class="navbar-nav mr-auto">
