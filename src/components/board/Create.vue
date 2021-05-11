@@ -16,7 +16,6 @@
   </form>
 <button class="btn btn-primary" @click="saveform">Save</button>
 <button class="btn btn-outline-dark ml-2" @click="moveToBoard">Cancel</button>
-<button class="btn btn-primary" @click="read">read</button>
 </div>
 </template>
 
@@ -47,13 +46,6 @@ export default {
           alert('Error : ' + error.message)
         })
     }
-    // read () {
-    //   db.collection('forms').get().then((snapshot) => {
-    //     snapshot.docs.forEach(doc => {
-    //       console.log(doc.data())
-    //     })
-    //   })
-    // }
   }
 }
 </script>

@@ -6,9 +6,8 @@
   </button>
 </div>
 <hr>
-  <button @click="read">read</button>
 
-<tr v-for="form in forms" :key="form">
+<tr v-for="form in forms" :key="form.id">
   <td> {{form.title}} </td>
   <td> {{form.content}} </td>
 </tr>
@@ -35,15 +34,14 @@ export default {
       this.$router.push({
         name: 'Create'
       })
-    },
-    read () {
-      db.collection('forms').get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-          this.forms.push(doc.data())
-        //   console.log(doc.data())
-        })
-      })
     }
+  },
+  created () {
+    db.collection('forms').get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        this.forms.push(doc.data())
+      })
+    })
   }
 }
 </script>
