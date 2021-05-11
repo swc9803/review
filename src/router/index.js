@@ -8,6 +8,7 @@ import Board from '../pages/Board'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Create from '@/components/board/Create'
+import Boardid from '@/components/board/Boardid'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -56,6 +57,11 @@ const router = createRouter({
       path: '/create',
       name: 'Create',
       component: Create
+    },
+    {
+      path: '/board/:id',
+      name: 'Boardid',
+      component: Boardid
     }
   ]
 })

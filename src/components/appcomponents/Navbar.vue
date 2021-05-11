@@ -31,7 +31,7 @@
       </li>
     </ul>
       <div>
-<button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
+        <button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
           로그인
         </button>
         <div>

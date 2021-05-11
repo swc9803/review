@@ -21,7 +21,6 @@
 
 <script>
 import { db } from '@/fdb'
-// import 'firebase/firebase-firestore'
 
 export default {
   data () {
