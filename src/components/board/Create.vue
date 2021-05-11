@@ -41,6 +41,9 @@ export default {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
+        this.$router.push({
+          name: 'Board'
+        })
       })
         .catch((error) => {
           alert('Error : ' + error.message)
