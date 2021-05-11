@@ -22,15 +22,12 @@
 
 <script>
 import { db } from '@/fdb'
-import 'firebase/firebase-firestore'
+// import 'firebase/firebase-firestore'
 
 export default {
   data () {
     return {
-      items: [],
       form: {
-        title: '',
-        content: ''
       }
     }
   },
@@ -41,7 +38,7 @@ export default {
       })
     },
     saveform () {
-      db.collection('forms').doc('form').set(this.form).then(() => {
+      db.collection('forms').add(this.form).then(() => {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
@@ -49,16 +46,14 @@ export default {
         .catch((error) => {
           alert('Error : ' + error.message)
         })
-    },
-    read () {
-      const dd = db.collection('forms').doc('form')
-      const doc = dd.get()
-      if (!doc.exists) {
-        console.log('No such document!')
-      } else {
-        console.log('Document data:', doc.data())
-      }
     }
+    // read () {
+    //   db.collection('forms').get().then((snapshot) => {
+    //     snapshot.docs.forEach(doc => {
+    //       console.log(doc.data())
+    //     })
+    //   })
+    // }
   }
 }
 </script>
