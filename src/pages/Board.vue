@@ -6,17 +6,19 @@
   </button>
 </div>
 <hr>
-<table class="table table-hover text-center mt-4" style="width: 75%">
-  <thead style="background: skyblue">
-    <th style="width: 30%">제목</th> <th class="c">내용</th>
-  </thead>
-  <tbody>
-    <tr v-for="form in forms" :key="form.id">
-      <td> {{ form.title }}  </td>
-      <td> {{ form.content }} </td>
-    </tr>
-  </tbody>
-</table>
+
+<div
+      v-for="form in forms" :key="form.id"
+      class="card mt-2"
+    >
+
+      <div
+        class="card-body p-2 d-flex align-items-center"
+        @click="moveToPage(form.id)"
+      >
+    {{ form.title }} {{ form.content }}
+      </div>
+    </div>
 
 </template>
 <script>
