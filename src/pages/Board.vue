@@ -7,18 +7,12 @@
 </div>
 <hr>
 
-<div
-      v-for="form in forms" :key="form.id"
-      class="card mt-2"
-    >
-
-      <div
-        class="card-body p-2 d-flex align-items-center"
-        @click="moveToPage(form.id)"
-      >
+<div v-for="form in forms" :key="form.id" class="card mt-2">
+  <div class="card-body p-2 d-flex align-items-center">
     {{ form.title }} {{ form.content }}
-      </div>
-    </div>
+    <button class="ml-5" @click="del(form)">delete</button>
+  </div>
+</div>
 
 </template>
 <script>
@@ -27,10 +21,8 @@ export default {
   data () {
     return {
       forms: [],
-      form: {
-        title: '',
-        content: ''
-      }
+      title: '',
+      content: ''
     }
   },
   methods: {
@@ -40,12 +32,19 @@ export default {
       })
     }
   },
-  created () {
-    db.collection('forms').get().then((snapshot) => {
-      snapshot.docs.forEach(doc => {
-        this.forms.push(doc.data())
+  async created () {
+    const sn = await db.collection('forms').get()
+    sn.forEach(v => {
+      const { title, content } = v.data()
+      this.forms.push({
+        title, content, id: v.id
       })
+      console.log(v.id)
     })
+  },
+  // 삭제 구현
+  del (form) {
+    db.collection('forms').doc(form.id).delete()
   }
 }
 </script>

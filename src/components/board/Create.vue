@@ -35,8 +35,12 @@ export default {
         name: 'Board'
       })
     },
-    saveform () {
-      db.collection('forms').add(this.form).then(() => {
+    async saveform () {
+      await db.collection('forms').add(
+        {
+          title: this.form.title, content: this.form.content
+        }
+      ).then(() => {
         alert('Saved!')
         this.form.title = ''
         this.form.content = ''
