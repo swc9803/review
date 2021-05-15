@@ -54,7 +54,6 @@ export default {
   setup () {
     const router = useRouter()
     const moveToPage = (Boardid) => {
-      // router.push('/todos/' + todoId);
       router.push({
         name: 'Boardid',
         params: {

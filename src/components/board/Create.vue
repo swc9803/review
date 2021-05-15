@@ -1,4 +1,5 @@
 <template>
+<h1 class="ml-5">문서 생성하기</h1>
 <div class="form">
   <form>
     <label>Title</label>
