@@ -1,14 +1,17 @@
 <template>
-  <h1>Create page</h1>
-  <Create :editing="true" />
+{{collection}}
+{{document}}
 </template>
 
 <script>
-import Create from '@/components/board/Create.vue'
-
 export default {
-  components: {
-    Create
+  computed: {
+    collection () {
+      return this.$route.params.collection
+    },
+    document () {
+      return this.$route.params.document
+    }
   }
 }
 </script>

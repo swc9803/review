@@ -8,16 +8,17 @@
 <hr>
 
 <div v-for="form in forms" :key="form.id" class="card mt-2">
-  <div class="card-body p-2 d-flex align-items-center">
-    {{ form.title }} / {{ form.content }} / {{ form.id}}
-    <button class="ml-5" @click="del">delete</button>
+  <div class="card-body p-2 d-flex align-items-center" style="cursor: pointer" @click="moveToPage(form.id)">
+      {{ form.title }} / {{ form.content }} / {{ form.id}}
   </div>
+  <button class="ml-5" style="width: 100px" @click="del">delete</button>
 </div>
 
 </template>
 <script>
 import { db } from '@/fdb'
 import 'firebase/firebase-firestore'
+import { useRouter } from 'vue-router'
 
 export default {
   data () {
@@ -49,6 +50,21 @@ export default {
   // 삭제 구현
   del (form) {
     db.collection('forms').doc(form.id).delete()
+  },
+  setup () {
+    const router = useRouter()
+    const moveToPage = (Boardid) => {
+      // router.push('/todos/' + todoId);
+      router.push({
+        name: 'Boardid',
+        params: {
+          id: Boardid
+        }
+      })
+    }
+    return {
+      moveToPage
+    }
   }
 }
 </script>

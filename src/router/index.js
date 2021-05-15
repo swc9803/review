@@ -9,6 +9,7 @@ import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
+import error from '../pages/error'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -62,6 +63,11 @@ const router = createRouter({
       path: '/board/:id',
       name: 'Boardid',
       component: Boardid
+    },
+    {
+      path: '/*',
+      name: 'error',
+      component: error
     }
   ]
 })
