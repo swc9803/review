@@ -26,6 +26,8 @@ export default {
   data () {
     return {
       form: {
+        title: '',
+        content: ''
       }
     }
   },
@@ -36,7 +38,7 @@ export default {
       })
     },
     async saveform () {
-      await db.collection('forms').add(
+      await db.collection('forms').add( // this.form
         {
           title: this.form.title, content: this.form.content
         }

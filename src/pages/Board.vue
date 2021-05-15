@@ -9,20 +9,24 @@
 
 <div v-for="form in forms" :key="form.id" class="card mt-2">
   <div class="card-body p-2 d-flex align-items-center">
-    {{ form.title }} {{ form.content }}
-    <button class="ml-5" @click="del(form)">delete</button>
+    {{ form.title }} / {{ form.content }} / {{ form.id}}
+    <button class="ml-5" @click="del">delete</button>
   </div>
 </div>
 
 </template>
 <script>
 import { db } from '@/fdb'
+import 'firebase/firebase-firestore'
+
 export default {
   data () {
     return {
       forms: [],
-      title: '',
-      content: ''
+      form: {
+        title: '',
+        content: ''
+      }
     }
   },
   methods: {
