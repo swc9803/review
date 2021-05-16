@@ -28,7 +28,7 @@ export default {
         await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
             alert('로그인 완료!')
-            this.$router.push({ name: 'Home' })
+            this.$router.push({ name: 'User' })
           })
       } catch (err) {
         alert('에러 : ' + err.message)

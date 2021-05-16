@@ -44,7 +44,7 @@
 </template>
 
 <script>
-
+// import User from 'User'
 export default {
   methods: {
     moveToLogin () {
@@ -57,6 +57,9 @@ export default {
         name: 'SignUp'
       })
     }
+  },
+  components: {
+    // User
   }
 }
 </script>

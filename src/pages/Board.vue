@@ -1,15 +1,15 @@
 <template>
 <div class="container">
-<h2>Board</h2>
+<h2 >Board</h2> <p style="float: right">총 {{ forms.length }}개의 게시글이 있습니다.</p>
   <button class="btn btn-outline-info" @click="moveToCreate">
     글 작성하기
   </button>
 </div>
 <hr>
 
-<div v-for="form in forms" :key="form.id" class="card mt-2">
+<div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5">
   <div class="card-body p-2 d-flex align-items-center" style="cursor: pointer" @click="moveToPage(form.id)">
-      {{ form.title }} / {{ form.content }} / {{ form.id}}
+    {{ forms.length - i }}번째 &nbsp; / {{ form.title }} / {{ form.id}}
   </div>
   <button class="ml-5" style="width: 100px" @click="del">delete</button>
 </div>

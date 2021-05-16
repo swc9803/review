@@ -10,6 +10,7 @@ import SignUp from '@/components/SignUp'
 import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
 import error from '../pages/error'
+import User from '../pages/User'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -68,6 +69,11 @@ const router = createRouter({
       path: '/*',
       name: 'error',
       component: error
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: User
     }
   ]
 })
