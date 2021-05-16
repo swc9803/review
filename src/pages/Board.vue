@@ -7,11 +7,12 @@
 </div>
 <hr>
 
-<div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5">
-  <div class="card-body p-2 d-flex align-items-center" style="cursor: pointer" @click="moveToPage(form.id)">
-    {{ forms.length - i }}번째 &nbsp; / {{ form.title }} / {{ form.id}} / {{ form.createdAt }} /
+<div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5 mr-5">
+  <div class="card-body p-2" style="cursor: pointer" @click="moveToPage(form.id)">
+    {{ form.title }} &nbsp;&nbsp; /&nbsp; {{ form.id}}
   </div>
-  <button class="ml-5" style="width: 100px" @click="del">delete</button>
+   <p class="index mr-3">{{ forms.length - i }}번 글 </p>
+  <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
 </div>
 
 </template>
@@ -73,5 +74,12 @@ export default {
   font-size: 20px;
   border: 1px solid;
  }
-
+ .date {
+  font-size: 15px;
+  text-align: right;
+ }
+ .index {
+   font-size: 20px;
+   text-align: right;
+ }
 </style>
