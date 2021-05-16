@@ -28,7 +28,8 @@ export default {
     return {
       form: {
         title: '',
-        content: ''
+        content: '',
+        createdAt: ''
       }
     }
   },
@@ -39,9 +40,10 @@ export default {
       })
     },
     async saveform () {
+      const createdAt = new Date()
       await db.collection('forms').add( // this.form
         {
-          title: this.form.title, content: this.form.content
+          title: this.form.title, content: this.form.content, createdAt
         }
       ).then(() => {
         alert('Saved!')

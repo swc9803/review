@@ -9,7 +9,7 @@
 
 <div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5">
   <div class="card-body p-2 d-flex align-items-center" style="cursor: pointer" @click="moveToPage(form.id)">
-    {{ forms.length - i }}번째 &nbsp; / {{ form.title }} / {{ form.id}}
+    {{ forms.length - i }}번째 &nbsp; / {{ form.title }} / {{ form.id}} / {{ form.createdAt }} /
   </div>
   <button class="ml-5" style="width: 100px" @click="del">delete</button>
 </div>
@@ -38,13 +38,12 @@ export default {
     }
   },
   async created () {
-    const sn = await db.collection('forms').get()
+    const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
     sn.forEach(v => {
-      const { title, content } = v.data()
+      const { title, content, createdAt } = v.data()
       this.forms.push({
-        title, content, id: v.id
+        title, content, id: v.id, createdAt
       })
-      console.log(v.id)
     })
   },
   // 삭제 구현
