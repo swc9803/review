@@ -1,13 +1,11 @@
 <template>
   <div class="login">
-    <!-- <template v-slot:activator="{ on }"> -->
-      <p>Login</p>
-      <input class="left" type="text" style="width:300px" v-model="email" placeholder="이메일"> <br>
-      <input class="left" type="password" style="width:300px" v-model="password" placeholder="패스워드"> <br>
-      <button class="btn btn-primary" style="width:100px" @click="Login"><i class="glyphicon glyphicon-log-in"></i>로그인</button>
-      <h6>아이디가 없으신가요? 회원가입을 해주세요</h6>
-      <router-link :to="{ name: 'SignUp'}">회원가입 하러 가기</router-link>
-    <!-- </template> -->
+    <p>Login</p>
+    <input class="left" type="text" style="width:300px" v-model="user.email" placeholder="이메일"> <br>
+    <input class="left" type="password" style="width:300px" v-model="user.password" placeholder="패스워드"> <br>
+    <button class="btn btn-primary" style="width:100px" @click="Login"><i class="glyphicon glyphicon-log-in"></i>로그인</button>
+    <h6>아이디가 없으신가요? 회원가입을 해주세요</h6>
+    <router-link :to="{ name: 'SignUp'}">회원가입 하러 가기</router-link>
   </div>
 </template>
 
@@ -18,17 +16,19 @@ export default {
   name: 'login',
   data () {
     return {
-      email: '',
-      password: ''
+      user: {
+        email: '',
+        password: ''
+      }
     }
   },
   methods: {
     async Login () {
       try {
-        await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-          .then(user => {
+        await firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
+          .then(() => {
             alert('로그인 완료!')
-            this.$router.push({ name: 'User' })
+            this.$router.push({ name: 'Home' })
           })
       } catch (err) {
         alert('에러 : ' + err.message)
