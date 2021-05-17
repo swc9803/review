@@ -22,6 +22,7 @@
 
 <script>
 import { db } from '@/fdb'
+import firebase from 'firebase'
 
 export default {
   data () {
@@ -29,7 +30,8 @@ export default {
       form: {
         title: '',
         content: '',
-        createdAt: ''
+        createdAt: '',
+        uid: ''
       }
     }
   },
@@ -40,22 +42,26 @@ export default {
       })
     },
     async saveform () {
+      const uid = firebase.auth().currentUser.uid
       const createdAt = new Date()
-      await db.collection('forms').add( // this.form
-        {
-          title: this.form.title, content: this.form.content, createdAt
-        }
-      ).then(() => {
-        alert('Saved!')
-        this.form.title = ''
-        this.form.content = ''
-        this.$router.push({
-          name: 'Board'
-        })
-      })
-        .catch((error) => {
+      if (uid === '') {
+        // alert('로그인을 먼저 해주세요')
+      } else {
+        await db.collection('forms').add( // this.form
+          {
+            title: this.form.title, content: this.form.content, createdAt, uid
+          }
+        ).then(() => {
+          alert('Saved!')
+          this.form.title = ''
+          this.form.content = ''
+          this.$router.push({
+            name: 'Board'
+          })
+        }).catch((error) => {
           alert('Error : ' + error.message)
         })
+      }
     }
   }
 }

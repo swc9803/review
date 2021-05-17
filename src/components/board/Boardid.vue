@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 >Board</h2> <p style="float: right">총 {{ forms.length }}개의 게시글이 있습니다.</p>
+    <h2 >Board</h2> {{ id }}
 
     글 작성하기
 
@@ -9,9 +9,23 @@
 <script>
 import { db } from '@/fdb'
 import 'firebase/firebase-firestore'
-// import { useRouter } from 'vue-router'
 
 export default {
+  title: 'Params',
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    id: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
       forms: [],

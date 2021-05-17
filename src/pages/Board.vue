@@ -11,8 +11,8 @@
   <div class="card-body p-2" style="cursor: pointer" @click="moveToPage(form.id)">
     {{ form.title }} &nbsp;&nbsp; /&nbsp; {{ form.id}}
   </div>
-   <p class="index mr-3">{{ forms.length - i }}번 글 </p>
-  <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
+    <p class="index mr-3">{{ forms.length - i }}번 글 </p>
+    <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
 </div>
 
 </template>
@@ -46,10 +46,6 @@ export default {
         title, content, id: v.id, createdAt
       })
     })
-  },
-  // 삭제 구현
-  del (form) {
-    db.collection('forms').doc(form.id).delete()
   },
   setup () {
     const router = useRouter()

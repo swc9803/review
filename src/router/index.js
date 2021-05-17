@@ -63,7 +63,8 @@ const router = createRouter({
     {
       path: '/board/:id',
       name: 'Boardid',
-      component: Boardid
+      component: Boardid,
+      props: true
     },
     {
       path: '/*',

@@ -42,7 +42,7 @@
       </div>
       <div v-else>
         <div class="mr-2">
-          <p class="email">{{ user.email }}님 안녕하세요</p>
+          <p class="email">{{ user.displayName }}님 안녕하세요</p>
         </div>
         <button class="btn btn-dark btn-block" style="width: 100px" @click="LogOut()">
           로그아웃
@@ -73,10 +73,8 @@ export default {
     },
     async LogOut () {
       await firebase.auth().signOut().then(() => {
-        firebase.auth().onAuthStateChanged(() => {
-          alert('로그아웃 되었습니다.')
-          this.$router.push({ name: 'Home' })
-        })
+        alert('로그아웃 되었습니다.')
+        this.$router.push({ name: 'Home' })
       })
     }
   },

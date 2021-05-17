@@ -1,6 +1,7 @@
 <template>
     <div class="signup">
       <p>Sign Up</p>
+      <input class="left" type="text" style="width:300px" v-model="user.name" placeholder="성함"> <br>
       <input class="left" type="text" style="width:300px" v-model="user.email" placeholder="이메일"> <br>
       <input class="left" type="password" style="width:300px" v-model="user.password" placeholder="패스워드"> <br>
       <button class="btn btn-primary" style="width:100px" @click="SignUp"><i class="glyphicon glyphicon-pencil"></i>회원가입</button>
@@ -20,6 +21,7 @@ export default {
   data () {
     return {
       user: {
+        name: '',
         email: '',
         password: ''
       }
