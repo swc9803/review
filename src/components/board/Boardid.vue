@@ -1,26 +1,21 @@
 <template>
   <div>
     <h2 >Board</h2> {{ id }}
-
-    글 작성하기
-
+    {{title}} {{content}}
+    <form>
+      <div class="from-group">
+        <label>form content</label>
+      </div>
+    </form>
 </div>
 </template>
 <script>
-import { db } from '@/fdb'
+import { useRoute } from 'vue-router'
 import 'firebase/firebase-firestore'
+import { db } from '@/fdb'
 
 export default {
-  title: 'Params',
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    },
     id: {
       type: Number,
       default: 0
@@ -35,14 +30,16 @@ export default {
       }
     }
   },
-  async created () {
-    const sn = db.collection('forms').doc('form.id')
-    const doc = await sn.get()
-    if (!doc.exists) {
-      console.log('No such document!')
-    } else {
-      console.log('Document data:', doc.data())
+  setup () {
+    const route = useRoute()
+
+    const getForm = async () => {
+      await db.collection('forms').doc(route.params.id).onSnapshot(async (doc) => {
+        const { title, content, createdAt } = await doc.data()
+        console.log(title, content, createdAt)
+      })
     }
+    getForm()
   }
 }
 </script>
