@@ -1,13 +1,7 @@
 <template>
   <div>
-    <h2 >Board</h2> {{ id }}
-    {{title}} {{content}}
-    <form>
-      <div class="from-group">
-        <label>form content</label>
-      </div>
-    </form>
-</div>
+    {{title}} {{content}} {{id}}
+  </div>
 </template>
 <script>
 import { useRoute } from 'vue-router'
@@ -16,9 +10,11 @@ import { db } from '@/fdb'
 
 export default {
   props: {
+    title: {
+      type: String
+    },
     id: {
-      type: Number,
-      default: 0
+      type: Number
     }
   },
   data () {
@@ -32,7 +28,6 @@ export default {
   },
   setup () {
     const route = useRoute()
-
     const getForm = async () => {
       await db.collection('forms').doc(route.params.id).onSnapshot(async (doc) => {
         const { title, content, createdAt } = await doc.data()
