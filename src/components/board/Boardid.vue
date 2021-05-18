@@ -1,40 +1,39 @@
 <template>
   <div>
-    {{title}} {{content}} {{id}}
+    {{id}}
+    <div class="card-body p-2" style="cursor: pointer"> {{ title }}</div>
+    {{ document }}
   </div>
 </template>
 <script>
 import { useRoute } from 'vue-router'
 import 'firebase/firebase-firestore'
 import { db } from '@/fdb'
+// import { ref } from 'vue'
 
 export default {
   props: {
     title: {
       type: String
     },
+    content: {
+      type: String
+    },
+    createdAt: {
+      type: Number
+    },
     id: {
       type: Number
     }
   },
-  data () {
-    return {
-      forms: [],
-      form: {
-        title: '',
-        content: ''
-      }
-    }
-  },
-  setup () {
+  async created () {
     const route = useRoute()
-    const getForm = async () => {
-      await db.collection('forms').doc(route.params.id).onSnapshot(async (doc) => {
-        const { title, content, createdAt } = await doc.data()
-        console.log(title, content, createdAt)
-      })
-    }
-    getForm()
+    await db.collection('forms').doc(route.params.id).get().then(snapshot => {
+      const title = snapshot.data().title
+      const content = snapshot.data().content
+      const createdAt = snapshot.data().createdAt
+      console.log(title, content, createdAt)
+    })
   }
 }
 </script>
