@@ -14,7 +14,11 @@ export default {
   props: ['id'],
   data () {
     return {
-      title: ''
+      forms: [],
+      form: {
+        title: '',
+        content: ''
+      }
     }
   },
   async created () {
