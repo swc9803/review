@@ -1,13 +1,15 @@
 <template>
 <form class="form">
-  <div class="card mt-4">
-    <div class="title">{{ form.title }}
+  <div class="title card mt-4">
+    <div class="ml-2">{{ form.title }}
       <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ user.displayName }}</span>
       <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
     </div>
   </div>
   <div class="card mt-4" style="height: 400px">
-    {{ form.content }}
+    <div class="ml-2">
+      {{ form.content }}
+    </div>
   </div>
 </form>
 </template>
