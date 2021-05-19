@@ -52,7 +52,7 @@ export default {
             title: this.form.title, content: this.form.content, createdAt, uid
           }
         ).then(() => {
-          alert('Saved!')
+          alert('저장 완료!')
           this.form.title = ''
           this.form.content = ''
           this.$router.push({

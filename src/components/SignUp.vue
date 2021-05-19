@@ -35,8 +35,8 @@ export default {
             res.user.updateProfile({
               displayName: this.user.name
             })
-            alert('회원가입완료!\n로그인창으로 이동합니다.')
-            this.$router.push({ name: 'Login' })
+            alert('회원가입완료!')
+            this.$router.push({ name: 'Home' })
           })
       } catch (err) {
         alert('에러 : ' + err.message)

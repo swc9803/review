@@ -7,18 +7,22 @@
 </div>
 <hr>
 
+<form class="form">
 <div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5 mr-5">
   <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
-    {{ form.title }} &nbsp;&nbsp; /&nbsp; {{ form.id}}
+    {{ form.title }}
   </div>
+    <p class="writer mr-3">작성자 : {{ user.displayName }}</p>
     <p class="index mr-3">{{ forms.length - i }}번 글 </p>
     <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
 </div>
+</form>
 
 </template>
 <script>
 import { db } from '@/fdb'
 import 'firebase/firebase-firestore'
+import firebase from 'firebase'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -28,7 +32,8 @@ export default {
       form: {
         title: '',
         content: ''
-      }
+      },
+      user: ''
     }
   },
   methods: {
@@ -45,6 +50,13 @@ export default {
       this.forms.push({
         title, content, id: v.id, createdAt
       })
+    })
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
+      } else {
+        this.user = ''
+      }
     })
   },
   setup () {
@@ -77,5 +89,15 @@ export default {
  .index {
    font-size: 20px;
    text-align: right;
+ }
+ .form {
+  width: 70%;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+ .writer {
+  font-size: 20px;
+  text-align: right
  }
 </style>
