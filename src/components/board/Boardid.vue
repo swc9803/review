@@ -2,7 +2,6 @@
   <div>
     {{ id }}
     {{ title }}
-    {{ document }}
   </div>
 </template>
 <script>
@@ -23,14 +22,9 @@ export default {
   },
   async created () {
     const route = useRoute()
-    await db.collection('forms').doc(route.params.id).get().then(snapshot => {
-      console.log(snapshot.data())
-      return {
-        title: snapshot.data().title,
-        content: snapshot.data().content,
-        createdAt: snapshot.data().createdAt
-      }
-    })
+    const forminfo = db.collection('forms').doc(route.params.id)
+    const doc = await forminfo.get()
+    console.log(doc.data().title)
   }
 }
 </script>
