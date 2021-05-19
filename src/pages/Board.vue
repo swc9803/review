@@ -8,7 +8,7 @@
 <hr>
 
 <div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5 mr-5">
-  <div class="card-body p-2" style="cursor: pointer" @click="moveToPage(form.id)">
+  <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
     {{ form.title }} &nbsp;&nbsp; /&nbsp; {{ form.id}}
   </div>
     <p class="index mr-3">{{ forms.length - i }}번 글 </p>
