@@ -16,7 +16,7 @@
       </li>
       <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Hot'}">
-          <i class="fas fa-fire"></i>Hot
+          <i class="fas fa-fire" style="color: red"></i>Hot
         </router-link>
       </li>
       <li class="nav-item active">
@@ -42,7 +42,7 @@
       </div>
       <div v-else>
         <div class="mr-2">
-          <p class="email">{{ user.displayName }}님 안녕하세요</p>
+          <p class="email"><i class="fas fa-user mr-1" style="color: blue"></i>{{ user.displayName }}님 안녕하세요</p>
         </div>
         <button class="btn btn-dark btn-block" style="width: 100px" @click="LogOut()">
           로그아웃
@@ -91,14 +91,11 @@ export default {
 </script>
 
 <style scoped>
-.nav-link {
-  font-size: 20px;
-  margin-left: 20px;
-}
-i {
-  color: red;
-}
-.email {
-  font-size: 18px;
-}
+  .nav-link {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  .email {
+    font-size: 18px;
+  }
 </style>
