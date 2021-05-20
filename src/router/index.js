@@ -5,12 +5,13 @@ import PlzReview from '../pages/PlzReview'
 import Hot from '../pages/Hot'
 import QnA from '../pages/QnA'
 import Board from '../pages/Board'
-import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
 import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
+import BoardEdit from '@/components/board/BoardEdit'
 import error from '../pages/error'
 import User from '../pages/User'
+import Login from '@/components/Login'
+import SignUp from '@/components/SignUp'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -46,16 +47,6 @@ const router = createRouter({
       component: Board
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/signup',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
       path: '/create',
       name: 'Create',
       component: Create
@@ -67,6 +58,12 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/board/:id/edit',
+      name: 'BoardEdit',
+      component: BoardEdit,
+      props: true
+    },
+    {
       path: '/*',
       name: 'error',
       component: error
@@ -75,6 +72,16 @@ const router = createRouter({
       path: '/user',
       name: 'User',
       component: User
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
 })

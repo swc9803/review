@@ -8,13 +8,13 @@
 <hr>
 
 <form class="form">
-<div v-for="(form, i) in forms" :key="form.id" class="card mt-2 ml-5 mr-5">
+<div v-for="(form, i) in forms" :key="form.id" class="card mt-3 ml-5 mr-5">
   <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
     {{ form.title }}
-  </div>
     <p class="writer mr-3">작성자 : {{ user.displayName }}</p>
     <p class="index mr-3">{{ forms.length - i }}번 글 </p>
     <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
+  </div>
 </div>
 </form>
 
@@ -34,13 +34,6 @@ export default {
         content: ''
       },
       user: ''
-    }
-  },
-  methods: {
-    moveToCreate () {
-      this.$router.push({
-        name: 'Create'
-      })
     }
   },
   async created () {
@@ -69,8 +62,14 @@ export default {
         }
       })
     }
+    const moveToCreate = () => {
+      router.push({
+        name: 'Create'
+      })
+    }
     return {
-      moveToPage
+      moveToPage,
+      moveToCreate
     }
   }
 }
