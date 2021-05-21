@@ -1,21 +1,31 @@
 <template>
   <hr>
   <form class="form">
-    <p style="font-size: 15px">00개의 댓글이 있습니다.</p>
-    <!-- 여기 댓글 목록 -->
+    <p style="font-size: 15px">{{ forms.length }} 개의 댓글이 있습니다.</p>
+    <form>
+      <div>
+        <div v-for="form in forms" :key="form.id" class="card mb-3"  style="background-color: lightgray">
+          <div>
+            <span class="badge badge-light ml-3 mt-2 mb-1">{{ form.name }}</span>
+          </div>
+          <p class="ml-3 mt-1">{{ form.comment }}</p>
+          <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt.toDate().toUTCString() }}</p>
+        </div>
+      </div>
+    </form>
     <div v-if="user != ''" class="card" style="background-color: lightgray">
       <div class="ml-3 mt-2 mb-2">
         <span class="badge badge-pill badge-light" style="float: left">{{ user.displayName }}</span>
       </div>
       <div>
         <div>
-          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" required></textarea>
-          <button class="btn btn-primary mr-2 mt-2 mb-2" style="float: right" @click="onSave">작성</button>
+          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
+          <button class="btn btn-primary mr-2 mt-2 mb-2" style="float: right" @click="saveComment">작성</button>
         </div>
       </div>
     </div>
-    <div v-else>
-      댓글을 작성하시려면 로그인을 해주세요.
+    <div v-else class="card mt-5" style="text-align: center; color: white; background-color: gray">
+      댓글을 작성하시려면 로그인을 해주세요!
     </div>
   </form>
 </template>
@@ -25,16 +35,9 @@ import firebase from 'firebase'
 import { db } from '@/fdb'
 
 export default {
-  setup (props, { emit }) {
-    const onSave = () => {
-      emit('save')
-    }
-    return {
-      onSave
-    }
-  },
   data () {
     return {
+      forms: [],
       form: {
         comment: '',
         createdAt: '',
@@ -56,18 +59,18 @@ export default {
           comment: this.form.comment, createdAt, updatedAt, uid, name
         }
       ).then(() => {
-        alert('작성 완료!')
         this.form.comment = ''
-        this.$router.push({
-          name: 'Board'
-          // 수정?
-        })
-      }).catch((error) => {
-        alert('Error : ' + error.message)
       })
     }
   },
   async created () {
+    const sn = await db.collection('forms').doc(this.$route.params.id).collection('comments').orderBy('createdAt', 'desc').get()
+    sn.forEach(v => {
+      const { comment, createdAt, name } = v.data()
+      this.forms.push({
+        comment, id: v.id, createdAt, name
+      })
+    })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.user = user
@@ -86,5 +89,8 @@ export default {
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+  }
+  .badge {
+    text-align: left
   }
 </style>

@@ -38,7 +38,7 @@ export default {
     this.form.name = doc.data().name
     this.form.title = doc.data().title
     this.form.content = doc.data().content
-    this.form.createdAt = doc.data().createdAt.toDate().toGMTString()
+    this.form.createdAt = doc.data().createdAt.toDate().toUTCString()
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.user = user
