@@ -1,15 +1,19 @@
 <template>
   <Boardheader />
-  <!-- footer는 댓글 구현 -->
-  <div>
-    <button @click="openModal" class="btn btn-danger mr-5" style="float: right">삭제</button>
-    <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-3" style="float: right">수정</button></router-link>
+  <div class="btn">
+    <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-5">수정</button></router-link>
+    <button @click="openModal" class="btn btn-danger mr-3">삭제</button>
+    <Modal
+      v-if="showModal"
+      @close="closeModal"
+      @delete="Deleteform"
+    />
   </div>
-  <Modal
-    v-if="showModal"
-    @close="closeModal"
-    @delete="Deleteform"
-  />
+  <br>
+  <div>
+    <Comment />
+  </div>
+
 </template>
 
 <script>
@@ -18,6 +22,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { db } from '@/fdb'
 import Modal from '@/components/Modal'
 import { ref } from 'vue'
+import Comment from '@/components/Comment'
 
 export default {
   setup () {
@@ -61,11 +66,15 @@ export default {
 
   components: {
     Boardheader,
-    Modal
+    Modal,
+    Comment
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .btn {
+    float: right;
+    margin-right: 10%;
+  }
 </style>

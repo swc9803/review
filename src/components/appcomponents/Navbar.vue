@@ -47,12 +47,12 @@
         <button class="btn btn-dark btn-block" style="width: 100px" @click="openModal">
           로그아웃
         </button>
-        <LogOutModal
-          v-if="showModal"
-          @close="closeModal"
-          @logout="LogOut()"
-        />
       </div>
+      <LogOutModal
+        v-if="showModal"
+        @close="closeModal"
+        @logout="LogOut()"
+      />
   </nav>
 </template>
 
