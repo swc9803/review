@@ -97,9 +97,8 @@ export default {
     },
     async LogOut () {
       await firebase.auth().signOut().then(() => {
+        this.closeModal()
         alert('로그아웃 되었습니다.')
-        const showModal = ref(false)
-        showModal.value = false
         this.$router.push({ name: 'Home' })
       })
     }

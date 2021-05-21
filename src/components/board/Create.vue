@@ -34,6 +34,7 @@ export default {
         title: '',
         content: '',
         createdAt: '',
+        updatedAt: '',
         uid: '',
         displayName: ''
       }
@@ -49,15 +50,16 @@ export default {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
       const createdAt = new Date()
+      const updatedAt = new Date()
       if (uid === '') {
         // alert('로그인을 먼저 해주세요')
       } else {
         await db.collection('forms').add( // this.form
           {
-            title: this.form.title, content: this.form.content, createdAt, uid, name
+            title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name
           }
         ).then(() => {
-          alert('저장 완료!')
+          alert('작성 완료!')
           this.form.title = ''
           this.form.content = ''
           this.$router.push({

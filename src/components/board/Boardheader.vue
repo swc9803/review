@@ -51,17 +51,17 @@ export default {
 </script>
 
 <style scoped>
-.date {
-  text-align: right;
-  font-size: 15px;
-}
-.title {
-  background: lightgray;
-}
-.form {
-  width: 70%;
-  margin: 0 auto;
-  float: none;
-  margin-bottom: 10px;
-}
+  .date {
+    text-align: right;
+    font-size: 15px;
+  }
+  .title {
+    background: lightgray;
+  }
+  .form {
+    width: 70%;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+  }
 </style>

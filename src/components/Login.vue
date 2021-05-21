@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <p>Login</p>
-    <input class="left" type="text" style="width:300px" v-model="user.email" placeholder="이메일"> <br>
+    <input class="left" type="email" style="width:300px" v-model="user.email" placeholder="이메일"> <br>
     <input class="left" type="password" style="width:300px" v-model="user.password" placeholder="패스워드" @keypress.enter="Login"> <br>
     <button class="btn btn-primary" style="width:100px" @click="Login"><i class="glyphicon glyphicon-log-in"></i>로그인</button>
     <h6>아이디가 없으신가요? 회원가입을 해주세요</h6>
