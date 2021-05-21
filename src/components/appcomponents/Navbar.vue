@@ -5,6 +5,11 @@
     </router-link>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
+        <router-link class="nav-link" :to="{ name: 'Hot'}">
+          <i class="fas fa-fire" style="color: red"></i>Hot
+        </router-link>
+      </li>
+      <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Review'}">
           Review
         </router-link>
@@ -15,18 +20,13 @@
         </router-link>
       </li>
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'Hot'}">
-          <i class="fas fa-fire" style="color: red"></i>Hot
+        <router-link class="nav-link" :to="{ name: 'Board'}">
+          Board
         </router-link>
       </li>
       <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'QnA'}">
           QnA
-        </router-link>
-      </li>
-      <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'Board'}">
-          Board
         </router-link>
       </li>
     </ul>

@@ -33,7 +33,8 @@ export default {
         title: '',
         content: '',
         createdAt: '',
-        uid: ''
+        uid: '',
+        displayName: ''
       }
     }
   },
@@ -52,13 +53,14 @@ export default {
   methods: {
     async updateform () {
       const uid = firebase.auth().currentUser.uid
+      const name = firebase.auth().currentUser.displayName
       const createdAt = new Date()
       if (uid === '') {
         alert('로그인을 해주세요')
       } else {
         await db.collection('forms').doc(this.$route.params.id).set(
           {
-            title: this.form.title, content: this.form.content, createdAt, uid
+            title: this.form.title, content: this.form.content, createdAt, uid, name
           }
         ).then(() => {
           alert('수정 완료!')
