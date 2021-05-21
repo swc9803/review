@@ -2,7 +2,7 @@
 <form class="form">
   <div class="title card mt-4">
     <div class="ml-2">{{ form.title }}
-      <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ user.displayName }}</span>
+      <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ form.name }}</span>
       <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
     </div>
   </div>
@@ -35,6 +35,7 @@ export default {
     const route = useRoute()
     const forminfo = db.collection('forms').doc(route.params.id)
     const doc = await forminfo.get()
+    this.form.name = doc.data().name
     this.form.title = doc.data().title
     this.form.content = doc.data().content
     this.form.createdAt = doc.data().createdAt.toDate().toGMTString()

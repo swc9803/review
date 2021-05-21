@@ -11,7 +11,7 @@
 <div v-for="(form, i) in forms" :key="form.id" class="card mt-3 ml-5 mr-5">
   <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
     {{ form.title }}
-    <p class="writer mr-3">작성자 : {{ user.displayName }}</p>
+    <p class="writer mr-3">작성자 : {{ form.name }}</p>
     <p class="index mr-3">{{ forms.length - i }}번 글 </p>
     <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toGMTString() }}</p>
   </div>
@@ -39,9 +39,9 @@ export default {
   async created () {
     const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
     sn.forEach(v => {
-      const { title, content, createdAt } = v.data()
+      const { title, content, createdAt, name } = v.data()
       this.forms.push({
-        title, content, id: v.id, createdAt
+        title, content, id: v.id, createdAt, name
       })
     })
     firebase.auth().onAuthStateChanged((user) => {
