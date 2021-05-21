@@ -3,13 +3,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h6 class="modal-title"> <i class="fas fa-trash" style="color: gray"></i> 게시글 삭제</h6>
+          <h6 class="modal-title"> <i class="fas fa-sign-out-alt"></i> 로그아웃</h6>
         </div>
         <div class="modal-body">
-          정말로 삭제하시겠습니까? <i class="far fa-sad-tear"></i>
+          정말로 로그아웃 하시겠습니까? <i class="far fa-sad-tear"></i>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" @click="onDelete">삭제</button>
+          <button type="button" class="btn btn-danger" @click="onLogOut">로그아웃</button>
           <button type="button" class="btn btn-secondary" @click="onClose">취소</button>
         </div>
       </div>
@@ -20,14 +20,14 @@
 <script>
 export default {
   setup (props, { emit }) {
-    const onDelete = () => {
-      emit('delete')
+    const onLogOut = () => {
+      emit('logout')
     }
     const onClose = () => {
       emit('close')
     }
     return {
-      onDelete,
+      onLogOut,
       onClose
     }
   }

@@ -44,21 +44,45 @@
         <div class="mr-2">
           <p class="email"><i class="fas fa-user mr-1" style="color: blue"></i>{{ user.displayName }}님 안녕하세요</p>
         </div>
-        <button class="btn btn-dark btn-block" style="width: 100px" @click="LogOut()">
+        <button class="btn btn-dark btn-block" style="width: 100px" @click="openModal">
           로그아웃
         </button>
+        <LogOutModal
+          v-if="showModal"
+          @close="closeModal"
+          @logout="LogOut()"
+        />
       </div>
   </nav>
 </template>
 
 <script>
 import firebase from 'firebase'
+import { ref } from 'vue'
+import LogOutModal from '@/components/LogOutModal'
 
 export default {
   data () {
     return {
       user: ''
     }
+  },
+  setup () {
+    const showModal = ref(false)
+    const openModal = () => {
+      showModal.value = true
+    }
+    const closeModal = () => {
+      showModal.value = false
+    }
+    return {
+      showModal,
+      openModal,
+      closeModal
+    }
+  },
+  components: {
+    LogOutModal
   },
   methods: {
     moveToLogin () {
@@ -74,6 +98,8 @@ export default {
     async LogOut () {
       await firebase.auth().signOut().then(() => {
         alert('로그아웃 되었습니다.')
+        const showModal = ref(false)
+        showModal.value = false
         this.$router.push({ name: 'Home' })
       })
     }
