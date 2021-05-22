@@ -10,8 +10,11 @@
           </div>
           <p class="ml-3 mt-1">{{ form.comment }}</p>
           <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt }}</p>
-          <!-- uid 구분 삭제 -->
-          <div v-if="showDelete"><button class="btn btn-danger p-2 mr-3 mb-2" style="float: right">삭제</button></div>
+          <div v-if="user.uid === form.uid">
+            <form @submit.prevent="deleteComment">
+              <button class="btn btn-danger p-2 mr-3 mb-2" type="submit" style="float: right">삭제</button>
+            </form>
+          </div>
         </div>
       </div>
     </form>
@@ -21,7 +24,7 @@
       </div>
       <form @submit.prevent="saveComment">
         <div>
-          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
+          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" required></textarea>
           <button type="submit" class="btn btn-primary mr-2 mt-2 mb-2" style="float: right">작성</button>
         </div>
       </form>
@@ -35,6 +38,7 @@
 <script>
 import firebase from 'firebase'
 import { db } from '@/fdb'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
   data () {
@@ -48,6 +52,24 @@ export default {
         displayName: ''
       },
       user: ''
+    }
+  },
+  setup () {
+    const router = useRouter()
+    const route = useRoute()
+    const deleteComment = async () => {
+      await db.collection('forms').doc(route.params.id).collection('comments').doc().delete().then(() => {
+        alert('정상적으로 삭제되었습니다.')
+        router.push({
+          name: 'Board'
+        })
+      }).catch((error) => {
+        console.error('Error removing document: ', error)
+      })
+    }
+    return {
+      deleteComment,
+      route
     }
   },
   methods: {
@@ -74,9 +96,9 @@ export default {
   async created () {
     const sn = await db.collection('forms').doc(this.$route.params.id).collection('comments').orderBy('createdAt', 'desc').get()
     sn.forEach(v => {
-      const { comment, createdAt, name } = v.data()
+      const { comment, createdAt, name, uid } = v.data()
       this.forms.push({
-        comment, id: v.id, createdAt, name
+        comment, id: v.id, createdAt, name, uid
       })
     })
     firebase.auth().onAuthStateChanged((user) => {
