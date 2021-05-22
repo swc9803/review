@@ -18,10 +18,8 @@
         <span class="badge badge-pill badge-light" style="float: left">{{ user.displayName }}</span>
       </div>
       <div>
-        <div>
-          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
-          <button class="btn btn-primary mr-2 mt-2 mb-2" style="float: right" @click="saveComment">작성</button>
-        </div>
+        <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
+        <button class="btn btn-primary mr-2 mt-2 mb-2" style="float: right" @click="saveComment">작성</button>
       </div>
     </div>
     <div v-else class="card mt-5" style="text-align: center; color: white; background-color: gray">
@@ -54,13 +52,17 @@ export default {
       const name = firebase.auth().currentUser.displayName
       const createdAt = new Date()
       const updatedAt = new Date()
-      await db.collection('forms').doc(this.$route.params.id).collection('comments').add( // this.form
-        {
-          comment: this.form.comment, createdAt, updatedAt, uid, name
-        }
-      ).then(() => {
-        this.form.comment = ''
-      })
+      if (this.form.comment === '') {
+        alert('내용을 입력해주세요')
+      } else {
+        await db.collection('forms').doc(this.$route.params.id).collection('comments').add( // this.form
+          {
+            comment: this.form.comment, createdAt, updatedAt, uid, name
+          }
+        ).then(() => {
+          this.form.comment = ''
+        })
+      }
     }
   },
   async created () {
