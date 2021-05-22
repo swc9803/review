@@ -32,9 +32,8 @@ export default {
       form: {
         title: '',
         content: '',
-        createdAt: '',
-        uid: '',
-        displayName: ''
+        updatedAt: '',
+        uid: ''
       }
     }
   },
@@ -53,14 +52,14 @@ export default {
   methods: {
     async updateform () {
       const uid = firebase.auth().currentUser.uid
-      const name = firebase.auth().currentUser.displayName
-      const createdAt = new Date()
+      const currentDate = new Date()
+      const updatedAt = currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getDate() + '  ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds()
       if (uid === '') {
         alert('로그인을 해주세요')
       } else {
-        await db.collection('forms').doc(this.$route.params.id).set(
+        await db.collection('forms').doc(this.$route.params.id).update(
           {
-            title: this.form.title, content: this.form.content, createdAt, uid, name
+            title: this.form.title, content: this.form.content, updatedAt
           }
         ).then(() => {
           alert('수정 완료!')

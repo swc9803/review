@@ -9,10 +9,11 @@
 <form class="form">
   <div v-for="(form, i) in forms" :key="form.id" class="card mt-3 ml-5 mr-5">
     <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
-      {{ form.title }}
+      {{ form.title }} <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
       <p class="writer mr-3">작성자 : {{ form.name }}</p>
       <p class="index mr-3" style="font-size: 17px">No.{{ forms.length - i }}</p>
       <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
+      <p v-if="form.createdAt !== form.updatedAt" class="date mr-3">수정일 : {{ form.updatedAt }}</p>
     </div>
   </div>
 </form>
@@ -37,9 +38,9 @@ export default {
   async created () {
     const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
     sn.forEach(v => {
-      const { title, content, createdAt, name } = v.data()
+      const { title, content, createdAt, updatedAt, name } = v.data()
       this.forms.push({
-        title, content, id: v.id, createdAt, name
+        title, content, id: v.id, createdAt, updatedAt, name
       })
     })
     firebase.auth().onAuthStateChanged((user) => {
