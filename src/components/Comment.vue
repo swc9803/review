@@ -10,6 +10,8 @@
           </div>
           <p class="ml-3 mt-1">{{ form.comment }}</p>
           <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt.toDate().toUTCString() }}</p>
+          <!-- uid 구분 삭제 -->
+          <div v-if="showDelete"><button class="btn btn-danger p-2 mr-3 mb-2" style="float: right">삭제</button></div>
         </div>
       </div>
     </form>

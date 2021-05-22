@@ -1,8 +1,11 @@
 <template>
   <Boardheader />
   <div class="btn">
-    <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-5">수정</button></router-link>
-    <button @click="openModal" class="btn btn-danger mr-3">삭제</button>
+    <!-- uid구분 버튼보이기 -->
+    <div v-if="showbtn">
+      <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-5">수정</button></router-link>
+      <button @click="openModal" class="btn btn-danger mr-3">삭제</button>
+    </div>
     <Modal
       v-if="showModal"
       @close="closeModal"
