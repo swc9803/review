@@ -51,23 +51,27 @@ export default {
       const name = firebase.auth().currentUser.displayName
       const createdAt = new Date()
       const updatedAt = new Date()
-      if (uid === '') {
-        // alert('로그인을 먼저 해주세요')
-      } else {
-        await db.collection('forms').add( // this.form
-          {
-            title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name
-          }
-        ).then(() => {
-          alert('작성 완료!')
-          this.form.title = ''
-          this.form.content = ''
-          this.$router.push({
-            name: 'Board'
+      if (uid !== '') {
+        if (this.form.title === '' || this.form.content === '') {
+          alert('내용을 입력해주세요!')
+        } else {
+          await db.collection('forms').add( // this.form
+            {
+              title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name
+            }
+          ).then(() => {
+            alert('작성 완료!')
+            this.form.title = ''
+            this.form.content = ''
+            this.$router.push({
+              name: 'Board'
+            })
+          }).catch((error) => {
+            alert('Error : ' + error.message)
           })
-        }).catch((error) => {
-          alert('Error : ' + error.message)
-        })
+        }
+      } else {
+        // alert('로그인을 해주세요.')
       }
     }
   }

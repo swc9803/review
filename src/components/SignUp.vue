@@ -29,17 +29,21 @@ export default {
   },
   methods: {
     async SignUp () {
-      try {
-        await firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
-          .then((res) => {
-            res.user.updateProfile({
-              displayName: this.user.name
+      if (this.user.email === '' || this.user.password === '' || this.user.name === '') {
+        alert('전부 작성해 주세요!')
+      } else {
+        try {
+          await firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
+            .then((res) => {
+              res.user.updateProfile({
+                displayName: this.user.name
+              })
+              alert('회원가입 완료!')
+              this.$router.push({ name: 'Home' })
             })
-            alert('회원가입완료!')
-            this.$router.push({ name: 'Home' })
-          })
-      } catch (err) {
-        alert('에러 : ' + err.message)
+        } catch (err) {
+          alert('에러 : ' + err.message)
+        }
       }
     }
   }

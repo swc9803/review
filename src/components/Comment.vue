@@ -17,10 +17,12 @@
       <div class="ml-3 mt-2 mb-2">
         <span class="badge badge-pill badge-light" style="float: left">{{ user.displayName }}</span>
       </div>
-      <div>
-        <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
-        <button class="btn btn-primary mr-2 mt-2 mb-2" style="float: right" @click="saveComment">작성</button>
-      </div>
+      <form @submit.prevent="saveComment">
+        <div>
+          <textarea class="form-control col-11 ml-3" v-model="form.comment" placeholder="comment" @keypress.enter="saveComment" required></textarea>
+          <button type="submit" class="btn btn-primary mr-2 mt-2 mb-2" style="float: right">작성</button>
+        </div>
+      </form>
     </div>
     <div v-else class="card mt-5" style="text-align: center; color: white; background-color: gray">
       댓글을 작성하시려면 로그인을 해주세요!
@@ -61,6 +63,7 @@ export default {
           }
         ).then(() => {
           this.form.comment = ''
+          this.$router.go(this.$router.currentRoute) // 강제새로고침시키기
         })
       }
     }

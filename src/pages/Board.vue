@@ -11,7 +11,7 @@
     <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
       {{ form.title }}
       <p class="writer mr-3">작성자 : {{ form.name }}</p>
-      <p class="index mr-3">{{ forms.length - i }}번 글 </p>
+      <p class="index mr-3" style="font-size: 17px">No.{{ forms.length - i }}</p>
       <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toUTCString() }}</p>
     </div>
   </div>
