@@ -1,26 +1,26 @@
 <template>
-<div class="ss">
-  <h1 class="ml-5">글 작성하기</h1>
-  <hr>
-  <div class="form">
-    <form>
-      <label>Title</label>
-        <div class="row">
-          <div class="col-6">
-            <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
-          </div>
-          <div class="col-12">
-            <div class="form-group">
-              <label>Content</label>
-              <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+  <div class="ss">
+    <h1 class="ml-5">글 작성하기</h1>
+    <hr>
+    <div class="form">
+      <form>
+        <label>Title</label>
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label>Content</label>
+                <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+              </div>
             </div>
           </div>
-        </div>
-    </form>
-  <button class="btn btn-primary" @click="saveform">저장</button>
-  <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
+      </form>
+    <button class="btn btn-primary" @click="saveform">저장</button>
+    <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -49,13 +49,14 @@ export default {
     async saveform () {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
-      const createdAt = new Date()
-      const updatedAt = new Date()
+      const currentDate = new Date()
+      const createdAt = currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getDate() + '  ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds()
+      const updatedAt = createdAt
       if (uid !== '') {
         if (this.form.title === '' || this.form.content === '') {
           alert('내용을 입력해주세요!')
         } else {
-          await db.collection('forms').add( // this.form
+          await db.collection('forms').add(
             {
               title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name
             }

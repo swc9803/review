@@ -12,7 +12,7 @@
       {{ form.title }}
       <p class="writer mr-3">작성자 : {{ form.name }}</p>
       <p class="index mr-3" style="font-size: 17px">No.{{ forms.length - i }}</p>
-      <p class="date mr-3">작성일 : {{ form.createdAt.toDate().toUTCString() }}</p>
+      <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
     </div>
   </div>
 </form>

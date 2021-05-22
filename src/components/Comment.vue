@@ -9,7 +9,7 @@
             <span class="badge badge-light ml-3 mt-2 mb-1">{{ form.name }}</span>
           </div>
           <p class="ml-3 mt-1">{{ form.comment }}</p>
-          <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt.toDate().toUTCString() }}</p>
+          <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt }}</p>
           <!-- uid 구분 삭제 -->
           <div v-if="showDelete"><button class="btn btn-danger p-2 mr-3 mb-2" style="float: right">삭제</button></div>
         </div>
@@ -54,8 +54,9 @@ export default {
     async saveComment () {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
-      const createdAt = new Date()
-      const updatedAt = new Date()
+      const currentDate = new Date()
+      const createdAt = currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getDate() + '  ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds()
+      const updatedAt = createdAt
       if (this.form.comment === '') {
         alert('내용을 입력해주세요')
       } else {
