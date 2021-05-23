@@ -38,14 +38,13 @@
 <script>
 import firebase from 'firebase'
 import { db } from '@/fdb'
-import { useRoute, useRouter } from 'vue-router'
+// import { useRoute, useRouter } from 'vue-router'
 
 export default {
   data () {
     return {
       forms: [],
       form: {
-        comment: '',
         createdAt: '',
         updatedAt: '',
         uid: '',
@@ -54,25 +53,16 @@ export default {
       user: ''
     }
   },
-  setup () {
-    const router = useRouter()
-    const route = useRoute()
-    const deleteComment = async () => {
-      await db.collection('forms').doc(route.params.id).collection('comments').doc().delete().then(() => {
-        alert('정상적으로 삭제되었습니다.')
-        router.push({
-          name: 'Board'
-        })
-      }).catch((error) => {
-        console.error('Error removing document: ', error)
-      })
-    }
-    return {
-      deleteComment,
-      route
-    }
-  },
   methods: {
+    async deleteComment () {
+      const sn = await db.collection('forms').doc(this.$route.params.id).collection('comments').get()
+      sn.forEach(v => {
+        console.log(v.id)
+        // db.collection('forms').doc(this.$route.params.id).collection('comments').doc(v.id).delete()
+      })
+
+      // db.collection('forms').doc(this.$route.params.id).collection('comments').doc(this.form.id).delete()
+    },
     async saveComment () {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
