@@ -11,7 +11,7 @@
           <p class="ml-3 mt-1">{{ form.comment }}</p>
           <p class="ml-3" style="font-size: 15px">작성일 : {{ form.createdAt }}</p>
           <div v-if="user.uid === form.uid">
-            <form @submit.prevent="deleteComment">
+            <form @submit.prevent="deleteComment(form.id)">
               <button class="btn btn-danger p-2 mr-3 mb-2" type="submit" style="float: right"><i class="fas fa-trash text-red-400 p-2 rounded-full hover:bg-red-50"></i></button>
             </form>
           </div>
@@ -38,7 +38,6 @@
 <script>
 import firebase from 'firebase'
 import { db } from '@/fdb'
-// import { useRoute, useRouter } from 'vue-router'
 
 export default {
   data () {
@@ -55,14 +54,6 @@ export default {
     }
   },
   methods: {
-    async deleteComment () {
-      // const sn = db.collection('forms').doc(this.$route.params.id).collection('comments').doc()
-      // sn.delete()
-      // console.log(sn.data())
-      // await db.collection('forms').doc(this.$route.params.id).collection('comments').doc().delete()
-
-      // db.collection('forms').doc(this.$route.params.id).collection('comments').doc(this.form.id).delete()
-    },
     async saveComment () {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
@@ -72,23 +63,29 @@ export default {
       if (this.form.comment === '') {
         alert('내용을 입력해주세요')
       } else {
-        await db.collection('forms').doc(this.$route.params.id).collection('comments').doc().set( // this.form
+        const formSnap = await db.collection('forms').doc(this.$route.params.id).collection('comments').add( // this.form
           {
             comment: this.form.comment, createdAt, updatedAt, uid, name
           }
-        ).then(() => {
-          this.form.comment = ''
-          this.$router.go(this.$router.currentRoute) // 강제새로고침시키기
-        })
+        )
+        this.form.comment = ''
+        this.$router.go(this.$router.currentRoute)
+        return formSnap.id
       }
+    },
+    async deleteComment (fID) {
+      await db.collection('forms').doc(this.$route.params.id).collection('comments').doc(fID).delete()
+      alert('정상적으로 삭제되었습니다.')
+      this.$router.go(this.$router.currentRoute)
     }
   },
   async created () {
     const sn = await db.collection('forms').doc(this.$route.params.id).collection('comments').orderBy('createdAt', 'desc').get()
     sn.forEach(v => {
       const { comment, createdAt, name, uid } = v.data()
+      const id = v.id
       this.forms.push({
-        comment, id: v.id, createdAt, name, uid
+        comment, id, createdAt, name, uid
       })
     })
     firebase.auth().onAuthStateChanged((user) => {
