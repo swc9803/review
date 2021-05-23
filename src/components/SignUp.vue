@@ -11,12 +11,10 @@
 </template>
 
 <script>
+import { db } from '@/fdb'
 import firebase from 'firebase'
 
 export default {
-  setup () {
-
-  },
   name: 'SignUp',
   data () {
     return {
@@ -38,6 +36,13 @@ export default {
               res.user.updateProfile({
                 displayName: this.user.name
               })
+              const uid = firebase.auth().currentUser.uid
+              const createdAt = new Date()
+              db.collection('users').add(
+                {
+                  name: this.user.name, email: this.user.email, createdAt, uid
+                }
+              )
               alert('회원가입 완료!')
               this.$router.push({ name: 'Home' })
             })
