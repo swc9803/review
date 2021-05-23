@@ -1,7 +1,6 @@
 <template>
   <Boardheader />
   <div class="btn">
-    <!-- uid구분 버튼보이기 -->
     <div>
        <!-- v-if="user.uid === form.uid" -->
       <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-5">수정</button></router-link>
