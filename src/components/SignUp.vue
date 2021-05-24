@@ -30,25 +30,21 @@ export default {
       if (this.user.email === '' || this.user.password === '' || this.user.name === '') {
         alert('전부 작성해 주세요!')
       } else {
-        try {
-          await firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
-            .then((res) => {
-              res.user.updateProfile({
-                displayName: this.user.name
-              })
-              const uid = firebase.auth().currentUser.uid
-              const createdAt = new Date()
-              db.collection('users').add(
-                {
-                  name: this.user.name, email: this.user.email, createdAt, uid
-                }
-              )
-              alert('회원가입 완료!')
-              this.$router.push({ name: 'Home' })
+        await firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
+          .then((res) => {
+            res.user.updateProfile({
+              displayName: this.user.name
             })
-        } catch (err) {
-          alert('에러 : ' + err.message)
-        }
+            const uid = firebase.auth().currentUser.uid
+            const createdAt = new Date()
+            db.collection('users').add(
+              {
+                name: this.user.name, email: this.user.email, createdAt, uid
+              }
+            )
+            alert('회원가입 완료!')
+            this.$router.push({ name: 'Home' })
+          })
       }
     }
   }

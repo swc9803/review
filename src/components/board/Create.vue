@@ -41,7 +41,8 @@ export default {
         createdAt: '',
         updatedAt: '',
         uid: '',
-        displayName: ''
+        displayName: '',
+        viewCount: ''
       },
       user: ''
     }
@@ -58,13 +59,14 @@ export default {
       const currentDate = new Date()
       const createdAt = currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getDate() + '  ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds()
       const updatedAt = createdAt
+      const viewCount = 0
       if (uid !== '') {
         if (this.form.title === '' || this.form.content === '') {
           alert('내용을 입력해주세요!')
         } else {
           await db.collection('forms').add(
             {
-              title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name
+              title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name, viewCount
             }
           ).then(() => {
             alert('작성 완료!')

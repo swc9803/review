@@ -3,7 +3,6 @@ import Home from '../pages/home'
 import Review from '../pages/Review'
 import PlzReview from '../pages/PlzReview'
 import Hot from '../pages/Hot'
-import QnA from '../pages/QnA'
 import Board from '../pages/Board'
 import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
@@ -35,11 +34,6 @@ const router = createRouter({
       path: '/hot',
       name: 'Hot',
       component: Hot
-    },
-    {
-      path: '/qna',
-      name: 'QnA',
-      component: QnA
     },
     {
       path: '/board',

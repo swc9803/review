@@ -24,11 +24,6 @@
           Board
         </router-link>
       </li>
-      <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'QnA'}">
-          QnA
-        </router-link>
-      </li>
     </ul>
       <div v-if="user == ''">
         <button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
