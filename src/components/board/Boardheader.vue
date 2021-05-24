@@ -37,6 +37,18 @@ export default {
       user: ''
     }
   },
+  setup (props, { emit }) {
+    const openModal = () => {
+      emit('delete')
+    }
+    const onClose = () => {
+      emit('close')
+    }
+    return {
+      openModal,
+      onClose
+    }
+  },
   async created () {
     const route = useRoute()
     const forminfo = db.collection('forms').doc(route.params.id)
