@@ -17,8 +17,13 @@
             </div>
           </div>
       </form>
-    <button class="btn btn-primary" @click="saveform">저장</button>
-    <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
+      <div v-if="user != ''">
+        <button class="btn btn-primary" @click="saveform">저장</button>
+        <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
+      </div>
+      <div v-else class="card mt-2" style="text-align: center; color: white; background-color: gray">
+        글을 작성하시려면 로그인을 해주세요!
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +42,8 @@ export default {
         updatedAt: '',
         uid: '',
         displayName: ''
-      }
+      },
+      user: ''
     }
   },
   methods: {
@@ -71,10 +77,17 @@ export default {
             alert('Error : ' + error.message)
           })
         }
-      } else {
-        // alert('로그인을 해주세요.')
       }
     }
+  },
+  created () {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
+      } else {
+        this.user = ''
+      }
+    })
   }
 }
 </script>

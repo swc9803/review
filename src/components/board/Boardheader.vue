@@ -12,6 +12,10 @@
       {{ form.content }}
     </div>
   </div>
+  <div v-if="user.uid === form.uid" class="btn m-2">
+    <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
+    <button @click="openModal" class="btn btn-danger mr-3">삭제</button>
+  </div>
 </form>
 </template>
 <script>
@@ -37,6 +41,7 @@ export default {
     const route = useRoute()
     const forminfo = db.collection('forms').doc(route.params.id)
     const doc = await forminfo.get()
+    this.form.uid = doc.data().uid
     this.form.name = doc.data().name
     this.form.title = doc.data().title
     this.form.content = doc.data().content
@@ -66,5 +71,9 @@ export default {
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+  }
+  .btn {
+    float: right;
+    margin-right: 10%;
   }
 </style>
