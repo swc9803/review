@@ -19,9 +19,8 @@
 </form>
 </template>
 <script>
-import { db } from '@/fdb'
+import { db, auth } from '@/fdb'
 import 'firebase/firebase-firestore'
-import firebase from 'firebase'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -43,7 +42,7 @@ export default {
         title, content, id: v.id, createdAt, updatedAt, name
       })
     })
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
       } else {

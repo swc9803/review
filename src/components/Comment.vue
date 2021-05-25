@@ -36,8 +36,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import { db } from '@/fdb'
+import { db, auth } from '@/fdb'
 
 export default {
   data () {
@@ -55,8 +54,8 @@ export default {
   },
   methods: {
     async saveComment () {
-      const uid = firebase.auth().currentUser.uid
-      const name = firebase.auth().currentUser.displayName
+      const uid = auth.currentUser.uid
+      const name = auth.currentUser.displayName
       const currentDate = new Date()
       const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
       const updatedAt = createdAt
@@ -88,7 +87,7 @@ export default {
         comment, id, createdAt, name, uid
       })
     })
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
       } else {

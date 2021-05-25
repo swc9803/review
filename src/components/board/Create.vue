@@ -29,8 +29,7 @@
 </template>
 
 <script>
-import { db } from '@/fdb'
-import firebase from 'firebase'
+import { db, auth } from '@/fdb'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
@@ -42,8 +41,8 @@ export default {
   },
   setup () {
     const router = useRouter()
-    const uid = firebase.auth().currentUser.uid
-    const name = firebase.auth().currentUser.displayName
+    const uid = auth.currentUser.uid
+    const name = auth.currentUser.displayName
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
     const updatedAt = createdAt
@@ -82,7 +81,7 @@ export default {
     }
   },
   created () {
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
       } else {

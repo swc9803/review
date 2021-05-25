@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { auth } from '@/fdb'
 import { ref } from 'vue'
 import LogOutModal from '@/components/LogOutModal'
 import { useRouter } from 'vue-router'
@@ -73,7 +73,7 @@ export default {
       showModal.value = false
     }
     const LogOut = async () => {
-      await firebase.auth().signOut()
+      await auth.signOut()
       closeModal()
       alert('로그아웃 되었습니다.')
       router.push({ name: 'Home' })
@@ -101,7 +101,7 @@ export default {
     LogOutModal
   },
   created () {
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
       } else {

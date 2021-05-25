@@ -22,16 +22,15 @@
 </template>
 
 <script>
-import { db } from '@/fdb'
+import { db, auth } from '@/fdb'
 import { useRoute, useRouter } from 'vue-router'
-import firebase from 'firebase'
 import { ref } from 'vue'
 
 export default {
   setup () {
     const route = useRoute()
     const router = useRouter()
-    const uid = firebase.auth().currentUser.uid
+    const uid = auth.currentUser.uid
     const currentDate = new Date()
     const updatedAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
     const title = ref('')

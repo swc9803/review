@@ -32,9 +32,7 @@
 
 <script>
 import { useRouter, useRoute } from 'vue-router'
-import 'firebase/firebase-firestore'
-import firebase from 'firebase'
-import { db } from '@/fdb'
+import { db, auth } from '@/fdb'
 import Modal from '@/components/Modal'
 import { ref } from 'vue'
 import Comment from '@/components/Comment'
@@ -104,7 +102,7 @@ export default {
     this.form.content = doc.data().content
     this.form.createdAt = doc.data().createdAt
     this.form.updatedAt = doc.data().updatedAt
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
       } else {
