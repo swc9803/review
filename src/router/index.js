@@ -7,7 +7,6 @@ import Board from '../pages/Board'
 import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
 import BoardEdit from '@/components/board/BoardEdit'
-import error from '../pages/error'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 
@@ -55,11 +54,6 @@ const router = createRouter({
       name: 'BoardEdit',
       component: BoardEdit,
       props: true
-    },
-    {
-      path: '/*',
-      name: 'error',
-      component: error
     },
     {
       path: '/login',

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { auth } from '@/fdb'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -21,7 +21,7 @@ export default {
     const password = ref('')
     const Login = async () => {
       try {
-        await firebase.auth().signInWithEmailAndPassword({ email: email.value, password: password.value })
+        await auth.signInWithEmailAndPassword(email.value, password.value)
         alert('로그인 완료!')
         router.push({ name: 'Home' })
       } catch (err) {
