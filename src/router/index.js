@@ -8,7 +8,6 @@ import Create from '@/components/board/Create'
 import Boardid from '@/components/board/Boardid'
 import BoardEdit from '@/components/board/BoardEdit'
 import error from '../pages/error'
-import User from '../pages/User'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 
@@ -61,11 +60,6 @@ const router = createRouter({
       path: '/*',
       name: 'error',
       component: error
-    },
-    {
-      path: '/user',
-      name: 'User',
-      component: User
     },
     {
       path: '/login',

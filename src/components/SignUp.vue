@@ -38,7 +38,7 @@ export default {
             const uid = firebase.auth().currentUser.uid
             const currentDate = new Date()
             const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
-            db.collection('users').add(
+            db.collection('users').doc(uid).set(
               {
                 name: this.user.name, email: this.user.email, createdAt, uid
               }

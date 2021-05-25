@@ -46,7 +46,7 @@
       <LogOutModal
         v-if="showModal"
         @close="closeModal"
-        @logout="LogOut()"
+        @logout="LogOut"
       />
   </nav>
 </template>
@@ -55,6 +55,7 @@
 import firebase from 'firebase'
 import { ref } from 'vue'
 import LogOutModal from '@/components/LogOutModal'
+import { useRouter } from 'vue-router'
 
 export default {
   data () {
@@ -63,6 +64,7 @@ export default {
     }
   },
   setup () {
+    const router = useRouter()
     const showModal = ref(false)
     const openModal = () => {
       showModal.value = true
@@ -70,33 +72,33 @@ export default {
     const closeModal = () => {
       showModal.value = false
     }
+    const LogOut = async () => {
+      await firebase.auth().signOut()
+      closeModal()
+      alert('로그아웃 되었습니다.')
+      router.push({ name: 'Home' })
+    }
+    const moveToLogin = () => {
+      router.push({
+        name: 'Login'
+      })
+    }
+    const moveToSignUp = () => {
+      router.push({
+        name: 'SignUp'
+      })
+    }
     return {
       showModal,
       openModal,
-      closeModal
+      closeModal,
+      LogOut,
+      moveToLogin,
+      moveToSignUp
     }
   },
   components: {
     LogOutModal
-  },
-  methods: {
-    moveToLogin () {
-      this.$router.push({
-        name: 'Login'
-      })
-    },
-    moveToSignUp () {
-      this.$router.push({
-        name: 'SignUp'
-      })
-    },
-    async LogOut () {
-      await firebase.auth().signOut().then(() => {
-        this.closeModal()
-        alert('로그아웃 되었습니다.')
-        this.$router.push({ name: 'Home' })
-      })
-    }
   },
   created () {
     firebase.auth().onAuthStateChanged((user) => {

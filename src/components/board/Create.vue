@@ -7,12 +7,12 @@
         <label>Title</label>
           <div class="row">
             <div class="col-6">
-              <input type="text" class="form-control" style="width: 300px" v-model="form.title" required>
+              <input type="text" class="form-control" style="width: 300px" v-model="title" required>
             </div>
             <div class="col-12">
               <div class="form-group">
                 <label>Content</label>
-                <textarea class="form-control" cols="30" rows="10" v-model="form.content" required></textarea>
+                <textarea class="form-control" cols="30" rows="10" v-model="content" required></textarea>
               </div>
             </div>
           </div>
@@ -31,55 +31,54 @@
 <script>
 import { db } from '@/fdb'
 import firebase from 'firebase'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
 export default {
   data () {
     return {
-      form: {
-        title: '',
-        content: '',
-        createdAt: '',
-        updatedAt: '',
-        uid: '',
-        displayName: '',
-        viewCount: ''
-      },
       user: ''
     }
   },
-  methods: {
-    moveToBoard () {
-      this.$router.push({
+  setup () {
+    const router = useRouter()
+    const uid = firebase.auth().currentUser.uid
+    const name = firebase.auth().currentUser.displayName
+    const currentDate = new Date()
+    const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
+    const updatedAt = createdAt
+    const viewCount = 0
+    const title = ref('')
+    const content = ref('')
+
+    const moveToBoard = () => {
+      router.push({
         name: 'Board'
       })
-    },
-    async saveform () {
-      const uid = firebase.auth().currentUser.uid
-      const name = firebase.auth().currentUser.displayName
-      const currentDate = new Date()
-      const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
-      const updatedAt = createdAt
-      const viewCount = 0
+    }
+    const saveform = async () => {
       if (uid !== '') {
-        if (this.form.title === '' || this.form.content === '') {
+        if (title.value === '' || content.value === '') {
           alert('내용을 입력해주세요!')
         } else {
           await db.collection('forms').add(
             {
-              title: this.form.title, content: this.form.content, createdAt, updatedAt, uid, name, viewCount
+              title: title.value, content: content.value, createdAt, updatedAt, uid, name, viewCount
             }
-          ).then(() => {
-            alert('작성 완료!')
-            this.form.title = ''
-            this.form.content = ''
-            this.$router.push({
-              name: 'Board'
-            })
-          }).catch((error) => {
-            alert('Error : ' + error.message)
+          )
+          alert('작성 완료!')
+          router.push({
+            name: 'Board'
           })
         }
       }
+    }
+
+    return {
+      moveToBoard,
+      saveform,
+      title,
+      content
     }
   },
   created () {
