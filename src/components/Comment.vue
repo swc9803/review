@@ -58,7 +58,7 @@ export default {
       const uid = firebase.auth().currentUser.uid
       const name = firebase.auth().currentUser.displayName
       const currentDate = new Date()
-      const createdAt = currentDate.getFullYear() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getDate() + '  ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds()
+      const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
       const updatedAt = createdAt
       if (this.form.comment === '') {
         alert('내용을 입력해주세요')
