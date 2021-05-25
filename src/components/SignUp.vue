@@ -28,7 +28,7 @@ export default {
   methods: {
     async SignUp () {
       if (this.user.email === '' || this.user.password === '' || this.user.name === '') {
-        alert('전부 작성해 주세요!')
+        alert('전부 입력해 주세요!')
       } else {
         await firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
           .then((res) => {
