@@ -29,6 +29,9 @@ export default {
         alert('전부 입력해 주세요!')
       } else {
         const { user } = await auth.createUserWithEmailAndPassword(email.value, password.value)
+        user.updateProfile({
+          displayName: name.value
+        })
         db.collection('users').doc(user.uid).set(
           {
             name: name.value, email: email.value, createdAt, uid: user.uid

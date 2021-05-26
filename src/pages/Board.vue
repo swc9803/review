@@ -19,15 +19,14 @@
 </form>
 </template>
 <script>
-import { db, auth } from '@/fdb'
+import { db } from '@/fdb'
 import { useRouter } from 'vue-router'
 // import { ref, onBeforeMount } from 'vue'
 
 export default {
   data () {
     return {
-      forms: [],
-      user: ''
+      forms: []
     }
   },
   async created () {
@@ -37,13 +36,6 @@ export default {
       this.forms.push({
         title, content, id: v.id, createdAt, updatedAt, name
       })
-    })
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user
-      } else {
-        this.user = ''
-      }
     })
   },
   setup () {
