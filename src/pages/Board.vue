@@ -35,6 +35,7 @@ export default {
         })
       })
     })
+
     const router = useRouter()
     const moveToPage = (Boardid) => {
       router.push({
