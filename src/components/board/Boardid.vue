@@ -1,18 +1,18 @@
 <template>
   <form class="form">
     <div class="title card mt-4">
-      <div class="ml-2">{{ form.title }} <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
-        <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ form.name }}</span>
-        <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
-        <p v-if="form.createdAt !== form.updatedAt" class="date mr-3">수정일 : {{ form.updatedAt }}</p>
+      <div class="ml-2">{{ title }} <em v-if="createdAt !== updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
+        <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ name }}</span>
+      <p v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ updatedAt }}</p>
+      <p class="date mr-3">작성일 : {{ createdAt }}</p>
       </div>
     </div>
     <div class="card mt-4" style="height: 400px">
       <div class="ml-2">
-        {{ form.content }}
+        {{ content }}
       </div>
     </div>
-    <div v-if="user.uid === form.uid" class="btn m-2">
+    <div v-if="user.uid === uid" class="btn m-2">
       <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
       <button @click.prevent="openModal" class="btn btn-danger mr-3">삭제</button>
     </div>
@@ -34,19 +34,12 @@
 import { useRouter, useRoute } from 'vue-router'
 import { db, auth } from '@/fdb'
 import Modal from '@/components/Modal'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Comment from '@/components/Comment'
 
 export default {
   data () {
     return {
-      forms: [],
-      form: {
-        title: '',
-        content: '',
-        createdAt: '',
-        updatedAt: ''
-      },
       user: ''
     }
   },
@@ -54,6 +47,23 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const showModal = ref(false)
+    const uid = ref('')
+    const name = ref('')
+    const title = ref('')
+    const content = ref('')
+    const createdAt = ref('')
+    const updatedAt = ref('')
+
+    onMounted(async () => {
+      const forminfo = db.collection('forms').doc(route.params.id)
+      const doc = await forminfo.get()
+      uid.value = doc.data().uid
+      name.value = doc.data().name
+      title.value = doc.data().title
+      content.value = doc.data().content
+      createdAt.value = doc.data().createdAt
+      updatedAt.value = doc.data().updatedAt
+    })
 
     const openModal = () => {
       showModal.value = true
@@ -85,23 +95,20 @@ export default {
       openModal,
       closeModal,
       Deleteform,
-      UpdateForm
+      UpdateForm,
+      uid,
+      name,
+      title,
+      content,
+      createdAt,
+      updatedAt
     }
   },
   components: {
     Modal,
     Comment
   },
-  async created () {
-    const route = useRoute()
-    const forminfo = db.collection('forms').doc(route.params.id)
-    const doc = await forminfo.get()
-    this.form.uid = doc.data().uid
-    this.form.name = doc.data().name
-    this.form.title = doc.data().title
-    this.form.content = doc.data().content
-    this.form.createdAt = doc.data().createdAt
-    this.form.updatedAt = doc.data().updatedAt
+  created () {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
