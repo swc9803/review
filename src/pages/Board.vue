@@ -12,8 +12,8 @@
       {{ form.title }} <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
       <p class="writer mr-3">작성자 : {{ form.name }}</p>
       <p class="index mr-3" style="font-size: 17px">No.{{ forms.length - i }}</p>
-      <p class="date mr-3" style="text-decoration:underline">수정일 : {{ form.updatedAt }}</p>
-      <p v-if="form.createdAt !== form.updatedAt" class="date mr-3">작성일 : {{ form.createdAt }}</p>
+      <p v-if="form.createdAt !== form.updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ form.updatedAt }}</p>
+      <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
     </div>
   </div>
 </form>
@@ -21,31 +21,20 @@
 <script>
 import { db } from '@/fdb'
 import { useRouter } from 'vue-router'
-// import { ref, onBeforeMount } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export default {
-  data () {
-    return {
-      forms: []
-    }
-  },
-  async created () {
-    const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
-    sn.forEach(v => {
-      const { title, content, createdAt, updatedAt, name } = v.data()
-      this.forms.push({
-        title, content, id: v.id, createdAt, updatedAt, name
+  setup () {
+    const forms = ref([])
+    onMounted(async () => {
+      const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
+      sn.forEach(doc => {
+        const { title, content, createdAt, updatedAt, name } = doc.data()
+        forms.value.push({
+          title, content, id: doc.id, createdAt, updatedAt, name
+        })
       })
     })
-  },
-  setup () {
-    // const forms = ref([])
-    // onBeforeMount(async () => {
-    //   const sn = await db.collection('forms').orderBy('createdAt', 'desc').get()
-    //   sn.forEach(v => {
-    //     forms.value.push(v.data())
-    //   })
-    // })
     const router = useRouter()
     const moveToPage = (Boardid) => {
       router.push({
@@ -62,7 +51,8 @@ export default {
     }
     return {
       moveToPage,
-      moveToCreate
+      moveToCreate,
+      forms
     }
   }
 }
