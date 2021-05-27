@@ -25,6 +25,10 @@
         </router-link>
       </li>
     </ul>
+    <div v-if="loading">
+      Loading...
+    </div>
+    <div v-else>
       <div v-if="user == ''">
         <button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
           로그인
@@ -48,6 +52,7 @@
         @close="closeModal"
         @logout="LogOut"
       />
+    </div>
   </nav>
 </template>
 
@@ -60,10 +65,12 @@ import { useRouter } from 'vue-router'
 export default {
   data () {
     return {
-      user: ''
+      user: '',
+      loading: true
     }
   },
   setup () {
+    // const loading = ref(true)
     const router = useRouter()
     const showModal = ref(false)
     const openModal = () => {
@@ -88,6 +95,16 @@ export default {
         name: 'SignUp'
       })
     }
+    // onBeforeMount(() => {
+    //   auth.onAuthStateChanged((user) => {
+    //     if (user) {
+    //       user.value = user
+    //     } else {
+    //       user.value = ''
+    //     }
+    //   })
+    // })
+
     return {
       showModal,
       openModal,
@@ -100,12 +117,14 @@ export default {
   components: {
     LogOutModal
   },
-  created () {
+  mounted () {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
+        this.loading = false
       } else {
         this.user = ''
+        this.loading = false
       }
     })
   }

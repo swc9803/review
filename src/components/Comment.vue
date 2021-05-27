@@ -59,6 +59,17 @@ export default {
         })
       })
     })
+    // onMounted(async () => {
+    //   await db.collection('forms').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc')
+    //     .onSnapshot((sn) => {
+    //       sn.forEach((doc) => {
+    //         const { comment, createdAt, name, uid } = doc.data()
+    //         comments.value.push({
+    //           comment, id: doc.id, createdAt, name, uid
+    //         })
+    //       })
+    //     })
+    // })
 
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)

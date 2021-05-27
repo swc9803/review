@@ -45,6 +45,9 @@ export default {
     const updateform = async () => {
       if (uid === '') {
         alert('로그인을 해주세요')
+        router.push({
+          name: 'Login'
+        })
       } else {
         await db.collection('forms').doc(route.params.id).update(
           {
