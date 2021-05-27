@@ -64,21 +64,18 @@ export default {
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
     const updatedAt = createdAt
     const comment = ref('')
+
     const saveComment = async () => {
-      if (comment.value === '') {
-        alert('내용을 입력해주세요')
-      } else {
-        const uid = auth.currentUser.uid
-        const name = auth.currentUser.displayName
-        const formSnap = await db.collection('forms').doc(route.params.id).collection('comments').add(
-          {
-            comment: comment.value, createdAt, updatedAt, uid, name
-          }
-        )
-        comment.value = ''
-        router.go(router.currentRoute)
-        return formSnap.id
-      }
+      const uid = auth.currentUser.uid
+      const name = auth.currentUser.displayName
+      const formSnap = await db.collection('forms').doc(route.params.id).collection('comments').add(
+        {
+          comment: comment.value, createdAt, updatedAt, uid, name
+        }
+      )
+      comment.value = ''
+      router.go(router.currentRoute)
+      return formSnap.id
     }
 
     const deleteComment = async (fID) => {
