@@ -9,7 +9,7 @@
     </p>
     <form>
       <div>
-        <div v-for="comment in comments" :key="comment.id" class="card mb-3" style="background-color: lightgray">
+        <div v-for="comment in comments" :key="comment.id" class="comment card mb-3">
             <span>
               <p class="badge badge-light ml-2 mt-2">
                 {{ comment.name }}
@@ -33,7 +33,7 @@
         </div>
       </div>
     </form>
-    <div v-if="user != ''" class="card" style="background-color: lightgray">
+    <div v-if="user != ''" class="card comment">
       <div class="m-2">
         <span class="badge badge-pill badge-light" style="float: left">
           {{ user.displayName }}
@@ -134,5 +134,8 @@ export default {
   }
   .badge {
     text-align: left
+  }
+  .comment {
+    background: rgb(222, 222, 222)
   }
 </style>

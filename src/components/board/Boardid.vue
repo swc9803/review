@@ -5,9 +5,9 @@
   <div v-else>
     <form class="form">
       <div class="title card mt-4">
-        <div class="ml-2 mb-1">
+        <div class="ml-2">
           {{ title }}
-          <em v-if="createdAt !== updatedAt" class="badge bg-success ml-2" style="font-size: 17px">
+          <em v-if="createdAt !== updatedAt" class="badge bg-success ml-1" style="font-size: 17px">
             수정됨
           </em>
         </div>
@@ -161,7 +161,7 @@ export default {
     font-size: 15px;
   }
   .title {
-    background: lightgray;
+    background: rgb(222, 222, 222)
   }
   .form {
     width: 70%;
