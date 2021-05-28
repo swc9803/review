@@ -16,8 +16,8 @@
           </div>
         </div>
     </form>
-  <button class="btn btn-primary" @click="updateform">저장</button>
-  <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
+    <button class="btn btn-primary" @click="updateform">저장</button>
+    <button class="btn btn-outline-dark ml-2" @click="moveToBoard">취소</button>
   </div>
 </template>
 

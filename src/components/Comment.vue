@@ -4,31 +4,45 @@
     <div class="spinner-border text-primary" role="status"></div> Loading
   </div>
   <form v-else class="form">
-    <p style="font-size: 15px">{{ comments.length }} 개의 댓글이 있습니다.</p>
+    <p style="font-size: 15px">
+      {{ comments.length }} 개의 댓글이 있습니다.
+    </p>
     <form>
       <div>
-        <div v-for="comment in comments" :key="comment.id" class="card mb-3"  style="background-color: lightgray">
-          <div>
-            <span class="badge badge-light ml-2 mt-2 mb-1">{{ comment.name }}</span>
-          </div>
-          <p class="ml-3 mt-1">{{ comment.comment }}</p>
-          <p class="ml-3" style="font-size: 15px">작성일 : {{ comment.createdAt }}</p>
-          <div v-if="user.uid === comment.uid">
-            <form @submit.prevent="deleteComment(comment.id)">
-              <button class="btn btn-danger p-2 mr-3 mb-2" type="submit" style="float: right"><i class="fas fa-trash text-red-400 p-2 rounded-full hover:bg-red-50"></i></button>
-            </form>
+        <div v-for="comment in comments" :key="comment.id" class="card mb-3" style="background-color: lightgray">
+            <span>
+              <p class="badge badge-light ml-2 mt-2">
+                {{ comment.name }}
+              </p>
+              <div class="mt-2" style="font-size: 15px; float: right">
+                <div v-if="user.uid === comment.uid">
+                  <span @click.prevent="deleteComment(comment.id)" class="mr-3 mt-2" style="float: right; color: red; cursor:pointer">
+                    <i class="fas fa-trash"></i>
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 mr-2" style="font-size: 15px; float: right">
+                {{ comment.createdAt }}
+              </p>
+            </span>
+          <div class="card mb-2 ml-2 mr-2">
+            <span class="ml-2">
+              {{ comment.comment }}
+            </span>
           </div>
         </div>
       </div>
     </form>
     <div v-if="user != ''" class="card" style="background-color: lightgray">
-      <div class="ml-3 mt-2 mb-2">
-        <span class="badge badge-pill badge-light" style="float: left">{{ user.displayName }}</span>
+      <div class="m-2">
+        <span class="badge badge-pill badge-light" style="float: left">
+          {{ user.displayName }}
+        </span>
       </div>
       <form @submit.prevent="saveComment">
         <div>
-          <textarea class="form-control col-11 ml-3" v-model="comment" placeholder="comment" required></textarea>
-          <button type="submit" class="btn btn-primary mr-2 mt-2 mb-2" style="float: right">작성</button>
+          <textarea class="form-control col-11 ml-2" v-model="comment" placeholder="comment" required></textarea>
+          <button type="submit" class="btn btn-primary m-2" style="float: right">작성</button>
         </div>
       </form>
     </div>
