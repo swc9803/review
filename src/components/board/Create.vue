@@ -1,8 +1,8 @@
 <template>
   <div class="ss">
-    <h1 class="ml-5">글 작성하기</h1>
-    <hr>
     <div class="form">
+      <h1 class="mt-2">글 작성하기</h1>
+      <hr>
       <form>
         <label>Title</label>
           <div class="row">
@@ -41,8 +41,6 @@ export default {
   },
   setup () {
     const router = useRouter()
-    const uid = auth.currentUser.uid
-    const name = auth.currentUser.displayName
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
     const updatedAt = createdAt
@@ -56,21 +54,20 @@ export default {
       })
     }
     const saveform = async () => {
-      if (uid !== '') {
-        if (title.value === '' || content.value === '') {
-          alert('내용을 입력해주세요!')
-        } else {
-          await db.collection('forms').add(
-            {
-              title: title.value, content: content.value, createdAt, updatedAt, uid, name, views
-            }
-          )
-          alert('작성 완료!')
-          router.push({
-            name: 'Board'
-          })
-        }
+      if (title.value === '' || content.value === '') {
+        alert('내용을 입력해주세요!')
       }
+      const uid = auth.currentUser.uid
+      const name = auth.currentUser.displayName
+      await db.collection('forms').add(
+        {
+          title: title.value, content: content.value, createdAt, updatedAt, uid, name, views
+        }
+      )
+      alert('작성 완료!')
+      router.push({
+        name: 'Board'
+      })
     }
 
     return {

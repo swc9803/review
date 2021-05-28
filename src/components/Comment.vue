@@ -1,12 +1,15 @@
 <template>
   <hr>
-  <form class="form">
+  <div v-if="loading" class="form">
+    <div class="spinner-border text-primary" role="status"></div> Loading
+  </div>
+  <form v-else class="form">
     <p style="font-size: 15px">{{ comments.length }} 개의 댓글이 있습니다.</p>
     <form>
       <div>
         <div v-for="comment in comments" :key="comment.id" class="card mb-3"  style="background-color: lightgray">
           <div>
-            <span class="badge badge-light ml-3 mt-2 mb-1">{{ comment.name }}</span>
+            <span class="badge badge-light ml-2 mt-2 mb-1">{{ comment.name }}</span>
           </div>
           <p class="ml-3 mt-1">{{ comment.comment }}</p>
           <p class="ml-3" style="font-size: 15px">작성일 : {{ comment.createdAt }}</p>
@@ -50,6 +53,8 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const comments = ref([])
+    const loading = ref(true)
+
     onMounted(async () => {
       const sn = await db.collection('forms').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc').get()
       sn.forEach(doc => {
@@ -58,18 +63,8 @@ export default {
           comment, id: doc.id, createdAt, name, uid
         })
       })
+      loading.value = false
     })
-    // onMounted(async () => {
-    //   await db.collection('forms').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc')
-    //     .onSnapshot((sn) => {
-    //       sn.forEach((doc) => {
-    //         const { comment, createdAt, name, uid } = doc.data()
-    //         comments.value.push({
-    //           comment, id: doc.id, createdAt, name, uid
-    //         })
-    //       })
-    //     })
-    // })
 
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
@@ -99,7 +94,8 @@ export default {
       comments,
       comment,
       saveComment,
-      deleteComment
+      deleteComment,
+      loading
     }
   },
   mounted () {

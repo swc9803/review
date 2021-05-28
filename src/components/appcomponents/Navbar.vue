@@ -70,7 +70,6 @@ export default {
     }
   },
   setup () {
-    // const loading = ref(true)
     const router = useRouter()
     const showModal = ref(false)
     const openModal = () => {
@@ -95,15 +94,6 @@ export default {
         name: 'SignUp'
       })
     }
-    // onBeforeMount(() => {
-    //   auth.onAuthStateChanged((user) => {
-    //     if (user) {
-    //       user.value = user
-    //     } else {
-    //       user.value = ''
-    //     }
-    //   })
-    // })
 
     return {
       showModal,
