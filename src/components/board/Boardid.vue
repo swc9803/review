@@ -28,7 +28,7 @@
       </div>
     </form>
     <div class="btn">
-      <Modal
+      <DeleteModal
         v-if="showModal"
         @close="closeModal"
         @delete="Deleteform"
@@ -44,7 +44,7 @@
 <script>
 import { useRouter, useRoute } from 'vue-router'
 import { db, auth } from '@/fdb'
-import Modal from '@/components/Modal'
+import DeleteModal from '@/components/DeleteModal'
 import { ref, onMounted } from 'vue'
 import Comment from '@/components/Comment'
 
@@ -127,7 +127,7 @@ export default {
     }
   },
   components: {
-    Modal,
+    DeleteModal,
     Comment
   },
   mounted () {
