@@ -11,7 +11,6 @@
     <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
       {{ form.title }} <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
       <p class="writer mr-3" style="float: right">작성자 : {{ form.name }}</p>
-
       <p style="font-size: 15px">조회수 {{ form.views }}</p>
       <p v-if="form.createdAt !== form.updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ form.updatedAt }}</p>
       <a class="index ml-2" style="font-size: 17px; float: left">No.{{ forms.length - i }}</a>
