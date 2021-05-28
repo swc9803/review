@@ -102,7 +102,7 @@ export default {
       deleteComment
     }
   },
-  created () {
+  mounted () {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user

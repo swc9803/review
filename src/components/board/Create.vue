@@ -80,7 +80,7 @@ export default {
       content
     }
   },
-  created () {
+  mounted () {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user

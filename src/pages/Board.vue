@@ -8,13 +8,20 @@
 <hr>
 <form class="form">
   <div v-for="(form, i) in forms" :key="form.id" class="card mt-3 ml-5 mr-5">
-    <div class="p-2" style="cursor: pointer" @click="moveToPage(form.id)">
-      {{ form.title }} <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
-      <p class="writer mr-3" style="float: right">작성자 : {{ form.name }}</p>
-      <p style="font-size: 15px">조회수 {{ form.views }}</p>
-      <p v-if="form.createdAt !== form.updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ form.updatedAt }}</p>
-      <a class="index ml-2" style="font-size: 17px; float: left">No.{{ forms.length - i }}</a>
-      <p class="date mr-3">작성일 : {{ form.createdAt }}</p>
+    <div class="ml-2" style="cursor: pointer" @click="moveToPage(form.id)">
+      {{ form.title }}
+      <em v-if="form.createdAt !== form.updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
+      <na class="writer mt-2 mr-3" style="float: right">
+        <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">{{ form.name }}</span>
+      </na>
+      <div>
+        <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ forms.length - i }}</p>
+        <p class="mr-3 mt-1" style="font-size: 15px; text-align: right">조회수 {{ form.views }}</p>
+      </div>
+      <date>
+        <up v-if="form.createdAt !== form.updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ form.updatedAt }}</up>
+        <cr class="date mr-3" style="float: right">작성일 : {{ form.createdAt }}</cr>
+      </date>
     </div>
   </div>
 </form>
@@ -67,7 +74,7 @@ export default {
   border: 1px solid;
  }
  .date {
-  font-size: 15px;
+  font-size: 14px;
   text-align: right;
  }
  .index {

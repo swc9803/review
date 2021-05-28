@@ -6,14 +6,17 @@
     <form class="form">
       <div class="title card mt-4">
         <div class="ml-2 mb-1">{{ title }}<em v-if="createdAt !== updatedAt" class="badge bg-success ml-2" style="font-size: 17px">수정됨</em> </div>
-        <div class="card">
-          뱃지 딱 맞게
-          <p class="badge badge-light mr-4 mt-2" style="text-align: left">{{ name }}</p>
-          <p class="mr-3" style="text-align: right; font-size: 15px">조회수 {{ views }}</p>
-          <p v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ updatedAt }}</p>
-          <p class="date mr-3">작성일 : {{ createdAt }}</p>
-        </div>
       </div>
+        <div class="card">
+          <div class="ml-2">
+            <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">{{ name }}</span>
+            <views class="mr-3 mt-2" style="float: right; font-size: 15px">조회수 {{ views }}</views>
+          </div>
+          <div>
+            <up v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ updatedAt }}</up>
+            <cr class="date mr-3" style="float: right">작성일 : {{ createdAt }}</cr>
+          </div>
+        </div>
       <div class="card mt-4" style="height: 400px">
         <div class="ml-2">
           {{ content }}
@@ -127,7 +130,7 @@ export default {
     Modal,
     Comment
   },
-  created () {
+  mounted () {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
