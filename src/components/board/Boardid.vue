@@ -1,8 +1,8 @@
 <template>
   <form class="form">
     <div class="title card mt-4">
-      <div class="ml-2">{{ title }} <em v-if="createdAt !== updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
-        <span class="badge badge-light mr-4 mt-2" style="float: right">작성자 : {{ name }}</span>
+      <div class="ml-2">{{ title }}<em v-if="createdAt !== updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
+        <span class="badge badge-light mr-4 mt-2" style="float: right">{{ name }}</span> 조회수 {{ views }}
       <p v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ updatedAt }}</p>
       <p class="date mr-3">작성일 : {{ createdAt }}</p>
       </div>
@@ -53,6 +53,7 @@ export default {
     const content = ref('')
     const createdAt = ref('')
     const updatedAt = ref('')
+    const views = ref('')
 
     onMounted(async () => {
       const forminfo = db.collection('forms').doc(route.params.id)
@@ -63,6 +64,12 @@ export default {
       content.value = doc.data().content
       createdAt.value = doc.data().createdAt
       updatedAt.value = doc.data().updatedAt
+      views.value = doc.data().views
+      await db.collection('forms').doc(route.params.id).update(
+        {
+          views: (views.value + 1)
+        }
+      )
     })
 
     const openModal = () => {
@@ -101,7 +108,8 @@ export default {
       title,
       content,
       createdAt,
-      updatedAt
+      updatedAt,
+      views
     }
   },
   components: {

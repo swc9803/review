@@ -46,7 +46,7 @@ export default {
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
     const updatedAt = createdAt
-    const viewCount = 0
+    const views = 0
     const title = ref('')
     const content = ref('')
 
@@ -62,7 +62,7 @@ export default {
         } else {
           await db.collection('forms').add(
             {
-              title: title.value, content: content.value, createdAt, updatedAt, uid, name, viewCount
+              title: title.value, content: content.value, createdAt, updatedAt, uid, name, views
             }
           )
           alert('작성 완료!')
