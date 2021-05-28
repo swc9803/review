@@ -26,7 +26,7 @@
       </li>
     </ul>
     <div v-if="loading">
-      Loading...
+      <div class="spinner-border text-primary" role="status"></div> Loading
     </div>
     <div v-else>
       <div v-if="user == ''">

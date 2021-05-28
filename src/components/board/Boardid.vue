@@ -1,32 +1,40 @@
 <template>
-  <form class="form">
-    <div class="title card mt-4">
-      <div class="ml-2">{{ title }}<em v-if="createdAt !== updatedAt" class="badge bg-success" style="font-size: 17px">수정됨</em>
-        <span class="badge badge-light mr-4 mt-2" style="float: right">{{ name }}</span> 조회수 {{ views }}
-      <p v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ updatedAt }}</p>
-      <p class="date mr-3">작성일 : {{ createdAt }}</p>
-      </div>
-    </div>
-    <div class="card mt-4" style="height: 400px">
-      <div class="ml-2">
-        {{ content }}
-      </div>
-    </div>
-    <div v-if="user.uid === uid" class="btn m-2">
-      <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
-      <button @click.prevent="openModal" class="btn btn-danger mr-3">삭제</button>
-    </div>
-  </form>
-  <div class="btn">
-    <Modal
-      v-if="showModal"
-      @close="closeModal"
-      @delete="Deleteform"
-    />
+  <div v-if="loading" class="form mt-5">
+    <div class="spinner-border text-primary" role="status"></div> Loading
   </div>
-  <br>
-  <div>
-    <Comment />
+  <div v-else>
+    <form class="form">
+      <div class="title card mt-4">
+        <div class="ml-2 mb-1">{{ title }}<em v-if="createdAt !== updatedAt" class="badge bg-success ml-2" style="font-size: 17px">수정됨</em> </div>
+        <div class="card">
+          뱃지 딱 맞게
+          <p class="badge badge-light mr-4 mt-2" style="text-align: left">{{ name }}</p>
+          <p class="mr-3" style="text-align: right; font-size: 15px">조회수 {{ views }}</p>
+          <p v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline">수정일 : {{ updatedAt }}</p>
+          <p class="date mr-3">작성일 : {{ createdAt }}</p>
+        </div>
+      </div>
+      <div class="card mt-4" style="height: 400px">
+        <div class="ml-2">
+          {{ content }}
+        </div>
+      </div>
+      <div v-if="user.uid === uid" class="btn m-2">
+        <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
+        <button @click.prevent="openModal" class="btn btn-danger mr-3">삭제</button>
+      </div>
+    </form>
+    <div class="btn">
+      <Modal
+        v-if="showModal"
+        @close="closeModal"
+        @delete="Deleteform"
+      />
+    </div>
+    <br>
+    <div>
+      <Comment />
+    </div>
   </div>
 </template>
 
@@ -44,6 +52,7 @@ export default {
     }
   },
   setup () {
+    const loading = ref(true)
     const route = useRoute()
     const router = useRouter()
     const showModal = ref(false)
@@ -70,6 +79,7 @@ export default {
           views: (views.value + 1)
         }
       )
+      loading.value = false
     })
 
     const openModal = () => {
@@ -98,6 +108,7 @@ export default {
     }
 
     return {
+      loading,
       showModal,
       openModal,
       closeModal,
