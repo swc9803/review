@@ -1,9 +1,10 @@
 <template>
-  <hr>
   <div v-if="loading" class="form">
     <div class="spinner-border text-primary" role="status"></div> Loading
   </div>
   <form v-else class="form">
+    <hr>
+    <br>
     <p style="font-size: 15px">
       {{ comments.length }} 개의 댓글이 있습니다.
     </p>
@@ -70,7 +71,7 @@ export default {
     const loading = ref(true)
 
     onMounted(async () => {
-      const sn = await db.collection('forms').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc').get()
+      const sn = await db.collection('reviews').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc').get()
       sn.forEach(doc => {
         const { comment, createdAt, name, uid } = doc.data()
         comments.value.push({
@@ -88,18 +89,18 @@ export default {
     const saveComment = async () => {
       const uid = auth.currentUser.uid
       const name = auth.currentUser.displayName
-      const formSnap = await db.collection('forms').doc(route.params.id).collection('comments').add(
+      const reviewSnap = await db.collection('reviews').doc(route.params.id).collection('comments').add(
         {
           comment: comment.value, createdAt, updatedAt, uid, name
         }
       )
       comment.value = ''
       router.go(router.currentRoute)
-      return formSnap.id
+      return reviewSnap.id
     }
 
     const deleteComment = async (fID) => {
-      await db.collection('forms').doc(route.params.id).collection('comments').doc(fID).delete()
+      await db.collection('reviews').doc(route.params.id).collection('comments').doc(fID).delete()
       alert('정상적으로 삭제되었습니다.')
       router.go(router.currentRoute)
     }

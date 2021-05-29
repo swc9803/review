@@ -4,11 +4,14 @@ import Review from '../pages/Review'
 import PlzReview from '../pages/PlzReview'
 import Hot from '../pages/Hot'
 import Board from '../pages/Board'
-import Create from '@/components/board/Create'
+import BoardCreate from '@/components/board/BoardCreate'
 import Boardid from '@/components/board/Boardid'
 import BoardEdit from '@/components/board/BoardEdit'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import ReviewCreate from '@/components/review/ReviewCreate'
+import Reviewid from '@/components/review/Reviewid'
+import ReviewEdit from '@/components/review/ReviewEdit'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -39,9 +42,9 @@ const router = createRouter({
       component: Board
     },
     {
-      path: '/create',
-      name: 'Create',
-      component: Create
+      path: '/board/create',
+      name: 'BoardCreate',
+      component: BoardCreate
     },
     {
       path: '/board/:id',
@@ -53,6 +56,23 @@ const router = createRouter({
       path: '/board/:id/edit',
       name: 'BoardEdit',
       component: BoardEdit,
+      props: true
+    },
+    {
+      path: '/review/create',
+      name: 'ReviewCreate',
+      component: ReviewCreate
+    },
+    {
+      path: '/review/:id',
+      name: 'Reviewid',
+      component: Reviewid,
+      props: true
+    },
+    {
+      path: '/review/:id/edit',
+      name: 'ReviewEdit',
+      component: ReviewEdit,
       props: true
     },
     {

@@ -36,20 +36,20 @@
         </div>
       </div>
       <div v-if="user.uid === uid" class="btn m-2">
-        <router-link :to="{ name: 'BoardEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
+        <router-link :to="{ name: 'ReviewEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
         <button @click.prevent="openModal" class="btn btn-danger mr-3">삭제</button>
       </div>
     </form>
     <div class="btn">
-      <BoardDeleteModal
+      <ReviewDeleteModal
         v-if="showModal"
         @close="closeModal"
-        @delete="Deleteform"
+        @delete="Deletereview"
       />
     </div>
     <br class="form">
     <div>
-      <BoardComment />
+      <ReviewComment />
     </div>
   </div>
 </template>
@@ -57,9 +57,9 @@
 <script>
 import { useRouter, useRoute } from 'vue-router'
 import { db, auth } from '@/fdb'
-import BoardDeleteModal from '@/components/board/BoardDeleteModal'
+import ReviewDeleteModal from '@/components/review/ReviewDeleteModal'
 import { ref, onMounted } from 'vue'
-import BoardComment from '@/components/board/BoardComment'
+import ReviewComment from '@/components/review/ReviewComment'
 
 export default {
   data () {
@@ -81,8 +81,8 @@ export default {
     const views = ref('')
 
     onMounted(async () => {
-      const forminfo = db.collection('forms').doc(route.params.id)
-      const doc = await forminfo.get()
+      const reviewinfo = db.collection('reviews').doc(route.params.id)
+      const doc = await reviewinfo.get()
       uid.value = doc.data().uid
       name.value = doc.data().name
       title.value = doc.data().title
@@ -90,7 +90,7 @@ export default {
       createdAt.value = doc.data().createdAt
       updatedAt.value = doc.data().updatedAt
       views.value = doc.data().views
-      await db.collection('forms').doc(route.params.id).update(
+      await db.collection('reviews').doc(route.params.id).update(
         {
           views: (views.value + 1)
         }
@@ -106,20 +106,20 @@ export default {
       showModal.value = false
     }
 
-    const Deleteform = async () => {
-      await db.collection('forms').doc(route.params.id).delete().then(() => {
+    const Deletereview = async () => {
+      await db.collection('reviews').doc(route.params.id).delete().then(() => {
         alert('정상적으로 삭제되었습니다.')
         showModal.value = false
         router.push({
-          name: 'Board'
+          name: 'Review'
         })
       }).catch((error) => {
         console.error('Error removing document: ', error)
       })
     }
-    const UpdateForm = () => {
+    const Updatereview = () => {
       router.push({
-        name: 'BoardEdit'
+        name: 'ReviewEdit'
       })
     }
 
@@ -128,8 +128,8 @@ export default {
       showModal,
       openModal,
       closeModal,
-      Deleteform,
-      UpdateForm,
+      Deletereview,
+      Updatereview,
       uid,
       name,
       title,
@@ -140,8 +140,8 @@ export default {
     }
   },
   components: {
-    BoardDeleteModal,
-    BoardComment
+    ReviewDeleteModal,
+    ReviewComment
   },
   mounted () {
     auth.onAuthStateChanged((user) => {
