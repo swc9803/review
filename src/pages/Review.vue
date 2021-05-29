@@ -16,17 +16,17 @@
       <div class="ml-2" style="cursor: pointer" @click="moveToPage(review.id)">
         {{ review.title }}
         <em v-if="review.createdAt !== review.updatedAt" class="badge bg-warning" style="font-size: 17px">수정됨</em>
-        <na class="writer mt-2 mr-3" style="float: right">
+        <span class="writer mt-2 mr-3" style="float: right">
           <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">{{ review.name }}</span>
-        </na>
+        </span>
         <div>
           <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ reviews.length - i }}</p>
           <p class="mr-3 mt-1" style="font-size: 15px; text-align: right">조회수 {{ review.views }}</p>
         </div>
-        <date>
-          <up v-if="review.createdAt !== review.updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ review.updatedAt }}</up>
-          <cr class="date mr-3" style="float: right">작성일 : {{ review.createdAt }}</cr>
-        </date>
+        <div>
+          <span v-if="review.createdAt !== review.updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ review.updatedAt }}</span>
+          <span class="date mr-3" style="float: right">작성일 : {{ review.createdAt }}</span>
+        </div>
       </div>
     </div>
   </form>

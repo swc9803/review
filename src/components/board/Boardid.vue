@@ -18,15 +18,15 @@
               {{ name }}
               </span>
               <span class="date mr-3 mt-2">
-                <views>
+                <span>
                   조회수 {{ views }}
-                </views>
-                <cr class="ml-1">
+                </span>
+                <span class="ml-1">
                   작성일 : {{ createdAt }}
-                </cr>
-                <up v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
+                </span>
+                <span v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
                   수정일 : {{ updatedAt }}
-                </up>
+                </span>
               </span>
           </div>
         </div>
