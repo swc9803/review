@@ -1,7 +1,7 @@
 <template>
-  <h1 class="ml-5">글 수정하기</h1>
-  <hr>
   <div class="form">
+    <h1 class="mt-2">글 수정하기</h1>
+    <hr>
     <form>
       <label>Title</label>
         <div class="row">
