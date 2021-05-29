@@ -13,21 +13,21 @@
         </div>
       </div>
         <div class="card">
-          <div class="ml-2">
+          <div class="ml-2 mb-1">
             <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">
               {{ name }}
-            </span>
-            <views class="mr-3 mt-2" style="float: right; font-size: 15px">
-              조회수 {{ views }}
-            </views>
-          </div>
-          <div>
-            <up v-if="createdAt !== updatedAt" class="date mr-3" style="text-decoration:underline; float: right">
-              수정일 : {{ updatedAt }}
-            </up>
-            <cr class="date mr-3" style="float: right">
-              작성일 : {{ createdAt }}
-            </cr>
+              </span>
+              <span class="date mr-3 mt-2">
+                <views>
+                  조회수 {{ views }}
+                </views>
+                <cr class="ml-1">
+                  작성일 : {{ createdAt }}
+                </cr>
+                <up v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
+                  수정일 : {{ updatedAt }}
+                </up>
+              </span>
           </div>
         </div>
       <div class="card mt-4" style="height: 400px">
@@ -158,7 +158,8 @@ export default {
 <style scoped>
   .date {
     text-align: right;
-    font-size: 15px;
+    font-size: 14px;
+    float: right;
   }
   .title {
     background: rgb(222, 222, 222)
