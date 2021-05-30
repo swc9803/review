@@ -21,7 +21,11 @@
         </span>
         <div>
           <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ reviews.length - i }}</p>
-          <p class="mr-3 mt-1" style="font-size: 15px; text-align: right">조회수 {{ review.views }}</p>
+          <div>
+            <i class="far fa-heart" style="font-size: 15px; float: right"></i>
+            <p class="mr-3 mt-1" style="font-size: 15px; text-align: right">조회수 {{ review.views }}</p>
+          </div>
+
         </div>
         <div>
           <span v-if="review.createdAt !== review.updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ review.updatedAt }}</span>

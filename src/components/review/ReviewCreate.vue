@@ -48,7 +48,9 @@ export default {
     const views = 0
     const title = ref('')
     const content = ref('')
-    const file = ref('')
+    const likeCount = 0
+    const dislikeCount = 0
+    const likeuid = []
 
     const moveToReview = () => {
       router.push({
@@ -63,7 +65,7 @@ export default {
         const name = auth.currentUser.displayName
         await db.collection('reviews').add(
           {
-            title: title.value, content: content.value, createdAt, updatedAt, uid, name, views, file: file.value
+            title: title.value, content: content.value, createdAt, updatedAt, uid, name, views, likeCount, dislikeCount, likeuid
           }
         )
         alert('작성 완료!')
@@ -78,7 +80,10 @@ export default {
       savereview,
       title,
       content,
-      file
+      likeCount,
+      dislikeCount,
+      likeuid
+
     }
   },
   mounted () {

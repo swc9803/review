@@ -30,10 +30,14 @@
               </span>
           </div>
         </div>
-      <div class="card mt-4" style="height: 400px">
+      <div class="card mt-4" style="min-height: 100px">
         <div class="ml-2">
           {{ content }}
         </div>
+      </div>
+      <div style="text-align: center">
+        <button @click.prevent="Like" class="like">좋아요! {{ likeCount }}<i class="fas fa-heart" style="color: red"></i></button>
+        <button @click.prevent="DisLike" class="like">싫어요! {{ dislikeCount }}<i class="fas fa-heart-broken" style="color: skyblue"></i></button>
       </div>
       <div v-if="user.uid === uid" class="btn m-2">
         <router-link :to="{ name: 'ReviewEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
@@ -79,6 +83,8 @@ export default {
     const createdAt = ref('')
     const updatedAt = ref('')
     const views = ref('')
+    const likeCount = ref('')
+    const dislikeCount = ref('')
 
     onMounted(async () => {
       const reviewinfo = db.collection('reviews').doc(route.params.id)
@@ -90,6 +96,8 @@ export default {
       createdAt.value = doc.data().createdAt
       updatedAt.value = doc.data().updatedAt
       views.value = doc.data().views
+      likeCount.value = doc.data().likeCount
+      dislikeCount.value = doc.data().dislikeCount
       await db.collection('reviews').doc(route.params.id).update(
         {
           views: (views.value + 1)
@@ -101,11 +109,9 @@ export default {
     const openModal = () => {
       showModal.value = true
     }
-
     const closeModal = () => {
       showModal.value = false
     }
-
     const Deletereview = async () => {
       await db.collection('reviews').doc(route.params.id).delete().then(() => {
         alert('정상적으로 삭제되었습니다.')
@@ -122,6 +128,20 @@ export default {
         name: 'ReviewEdit'
       })
     }
+    const Like = async () => {
+      await db.collection('reviews').doc(route.params.id).update(
+        {
+          likeCount: (likeCount.value + 1)
+        }
+      )
+    }
+    const DisLike = async () => {
+      await db.collection('reviews').doc(route.params.id).update(
+        {
+          dislikeCount: (dislikeCount.value + 1)
+        }
+      )
+    }
 
     return {
       loading,
@@ -136,7 +156,11 @@ export default {
       content,
       createdAt,
       updatedAt,
-      views
+      views,
+      Like,
+      DisLike,
+      likeCount,
+      dislikeCount
     }
   },
   components: {
@@ -173,5 +197,11 @@ export default {
   .btn {
     float: right;
     margin-right: 10%;
+  }
+  .like{
+    font-size: 17px;
+    border: 1px gray solid;
+    display: inline-block;
+    margin: 1%;
   }
 </style>
