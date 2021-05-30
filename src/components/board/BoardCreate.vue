@@ -55,19 +55,20 @@ export default {
     }
     const saveform = async () => {
       if (title.value === '' || content.value === '') {
-        alert('내용을 입력해주세요!')
+        alert('내용을 전부 입력해주세요!')
+      } else {
+        const uid = auth.currentUser.uid
+        const name = auth.currentUser.displayName
+        await db.collection('forms').add(
+          {
+            title: title.value, content: content.value, createdAt, updatedAt, uid, name, views
+          }
+        )
+        alert('작성 완료!')
+        router.push({
+          name: 'Board'
+        })
       }
-      const uid = auth.currentUser.uid
-      const name = auth.currentUser.displayName
-      await db.collection('forms').add(
-        {
-          title: title.value, content: content.value, createdAt, updatedAt, uid, name, views
-        }
-      )
-      alert('작성 완료!')
-      router.push({
-        name: 'Board'
-      })
     }
 
     return {

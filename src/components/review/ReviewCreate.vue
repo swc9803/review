@@ -15,7 +15,7 @@
                 <textarea class="form-control" cols="30" rows="10" v-model="content" required></textarea>
               </div>
             </div>
-            <input type="file">
+            <!-- <input type="file" accept="image/*"> -->
           </div>
       </form>
       <div v-if="user != ''">
@@ -57,19 +57,20 @@ export default {
     }
     const savereview = async () => {
       if (title.value === '' || content.value === '') {
-        alert('내용을 입력해주세요!')
+        alert('내용을 전부 입력해주세요!')
+      } else {
+        const uid = auth.currentUser.uid
+        const name = auth.currentUser.displayName
+        await db.collection('reviews').add(
+          {
+            title: title.value, content: content.value, createdAt, updatedAt, uid, name, views, file: file.value
+          }
+        )
+        alert('작성 완료!')
+        router.push({
+          name: 'Review'
+        })
       }
-      const uid = auth.currentUser.uid
-      const name = auth.currentUser.displayName
-      await db.collection('reviews').add(
-        {
-          title: title.value, content: content.value, createdAt, updatedAt, uid, name, views, file: file.value
-        }
-      )
-      alert('작성 완료!')
-      router.push({
-        name: 'Review'
-      })
     }
 
     return {
@@ -90,6 +91,7 @@ export default {
     })
   }
 }
+
 </script>
 <style scoped>
   .form {
