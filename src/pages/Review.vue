@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-  <h2>Review</h2>
+  <h2 class="mt-3">Review</h2>
     <p v-if="loading"></p>
     <p v-else style="float: right">총 {{ reviews.length }}개의 리뷰가 있습니다.</p>
     <button class="btn btn-outline-info" @click="moveToCreate">
@@ -21,11 +21,10 @@
         </span>
         <div>
           <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ reviews.length - i }}</p>
-          <div>
-            <i class="far fa-heart" style="font-size: 15px; float: right"></i>
-            <p class="mr-3 mt-1" style="font-size: 15px; text-align: right">조회수 {{ review.views }}</p>
+          <div style="font-size: 15px">
+            <i class="far fa-heart" style="float: right"><span>{{ review.likeCount }}</span></i>
+            <p class="mr-3 mt-1" style="text-align: right">조회수 {{ review.views }}</p>
           </div>
-
         </div>
         <div>
           <span v-if="review.createdAt !== review.updatedAt" class="date mr-3" style="text-decoration:underline; float: right">수정일 : {{ review.updatedAt }}</span>
@@ -48,9 +47,9 @@ export default {
     onMounted(async () => {
       const sn = await db.collection('reviews').orderBy('createdAt', 'desc').get()
       sn.forEach(doc => {
-        const { title, content, createdAt, updatedAt, name, views } = doc.data()
+        const { title, content, createdAt, updatedAt, name, views, likeCount } = doc.data()
         reviews.value.push({
-          title, content, id: doc.id, createdAt, updatedAt, name, views
+          title, content, id: doc.id, createdAt, updatedAt, name, views, likeCount
         })
       })
       loading.value = false

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-  <h2>Board</h2>
+  <h2 class="mt-3">Board</h2>
     <p v-if="loading"></p>
     <p v-else style="float: right">총 {{ forms.length }}개의 게시글이 있습니다.</p>
     <button class="btn btn-outline-info" @click="moveToCreate">
