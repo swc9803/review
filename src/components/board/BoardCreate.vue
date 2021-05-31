@@ -12,7 +12,7 @@
             <div class="col-12">
               <div class="form-group">
                 <label>Content</label>
-                <textarea class="form-control" cols="30" rows="10" v-model="content" required></textarea>
+                <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
             </div>
           </div>
