@@ -25,7 +25,7 @@
             <i class="fas fa-heart mr-3 ml-2 mt-1" style="color: red; float: right">
               <span style="color: black">{{ review.likeCount }}</span>
             </i>
-            <p class="mr-3 mt-1" style="text-align: right">조회수 {{ review.views }}</p>
+            <p class="mr-3 mt-2" style="text-align: right">조회수 {{ review.views }}</p>
           </div>
         </div>
         <div>
