@@ -59,16 +59,12 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
-  data () {
-    return {
-      user: ''
-    }
-  },
   setup () {
     const route = useRoute()
     const router = useRouter()
     const comments = ref([])
     const loading = ref(true)
+    const user = auth.currentUser
 
     onMounted(async () => {
       const sn = await db.collection('forms').doc(route.params.id).collection('comments').orderBy('createdAt', 'asc').get()
@@ -110,17 +106,9 @@ export default {
       comment,
       saveComment,
       deleteComment,
-      loading
+      loading,
+      user
     }
-  },
-  mounted () {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user
-      } else {
-        this.user = ''
-      }
-    })
   }
 }
 

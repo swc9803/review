@@ -35,11 +35,6 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 export default {
-  data () {
-    return {
-      user: ''
-    }
-  },
   setup () {
     const router = useRouter()
     const currentDate = new Date()
@@ -51,6 +46,7 @@ export default {
     const likeCount = 0
     const dislikeCount = 0
     const likeuid = []
+    const user = auth.currentUser
 
     const moveToReview = () => {
       router.push({
@@ -82,18 +78,9 @@ export default {
       content,
       likeCount,
       dislikeCount,
-      likeuid
-
+      likeuid,
+      user
     }
-  },
-  mounted () {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user
-      } else {
-        this.user = ''
-      }
-    })
   }
 }
 

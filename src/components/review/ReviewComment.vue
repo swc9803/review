@@ -59,12 +59,8 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
-  data () {
-    return {
-      user: ''
-    }
-  },
   setup () {
+    const user = auth.currentUser
     const route = useRoute()
     const router = useRouter()
     const comments = ref([])
@@ -110,17 +106,9 @@ export default {
       comment,
       saveComment,
       deleteComment,
-      loading
+      loading,
+      user
     }
-  },
-  mounted () {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user
-      } else {
-        this.user = ''
-      }
-    })
   }
 }
 
