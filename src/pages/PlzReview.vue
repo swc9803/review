@@ -1,6 +1,6 @@
 <template>
     <div>
-      리뷰 요청 게시판입니다.
+      리뷰 요청 게시판입니다. 미구현
     </div>
 </template>
 

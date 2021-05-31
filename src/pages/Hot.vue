@@ -19,8 +19,8 @@
         <div>
           <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ reviews.length - i }}</p>
           <div style="font-size: 15px">
-            <i class="far fa-heart" style="float: right">
-                <span>{{ review.likeCount }}</span>
+            <i class="fas fa-heart mr-3 ml-2 mt-1" style="color: red; float: right">
+              <span style="color: black">{{ review.likeCount }}</span>
             </i>
             <p class="mr-3 mt-1" style="text-align: right">조회수 {{ review.views }}</p>
           </div>
