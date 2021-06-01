@@ -31,7 +31,7 @@
           </div>
         </div>
       <div class="card mt-4" style="height: 400px">
-        <div class="ml-2">
+        <div class="ml-2" style="white-space: pre-line">
           {{ content }}
         </div>
       </div>
