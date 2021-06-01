@@ -15,6 +15,22 @@
                 <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
             </div>
+            <!-- <Editor
+            api-key="no6didv74frqq23trdiml4inukdi4qjmeo55tsd1pnek8lod"
+            :init="{
+               height: 500,
+               menubar: false,
+               plugins: [
+                 'advlist autolink lists link image charmap print preview anchor',
+                 'searchreplace visualblocks code fullscreen',
+                 'insertdatetime media table paste code help wordcount'
+               ],
+               toolbar:
+                 'undo redo | formatselect | bold italic backcolor | \
+                 alignleft aligncenter alignright alignjustify | \
+                 bullist numlist outdent indent | removeformat | link image'
+             }"
+            /> -->
             <!-- <input type="file" accept="image/*"> -->
           </div>
       </form>
@@ -33,6 +49,7 @@
 import { db, auth } from '@/fdb'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+// import Editor from '@tinymce/tinymce-vue'
 
 export default {
   setup () {
@@ -82,6 +99,9 @@ export default {
       user
     }
   }
+  // components: {
+  //   Editor
+  // }
 }
 
 </script>
