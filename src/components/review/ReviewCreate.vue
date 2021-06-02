@@ -12,10 +12,11 @@
             <div>
               <div class="mb-3">
                 <!-- <QuillEditor
-                  placeholder="내용을 입력하세요" v-model="content"  style="min-height: 150px" required
+                  placeholder="내용을 입력하세요" v-model="contentt"  style="min-height: 150px" required
                   :toolbar="[{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }, 'bold', 'italic', 'underline', { 'align': [] }, 'strike', { 'color': [] }, { 'background': [] }, 'image']"
-                /> -->
-                <!-- <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea> -->
+                />
+                <button @click.prevent="read">read</button> -->
+                <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
               <!-- <input type="file" accept="image/*" @change="fileInput"> -->
             </div>
@@ -48,11 +49,17 @@ export default {
     const views = 0
     const title = ref('')
     const content = ref('')
+    const contentt = ref('')
     const likeCount = 0
     const dislikeCount = 0
     const likeuid = []
     const user = auth.currentUser
 
+    const read = () => {
+      console.log(title)
+      console.log(content)
+      console.log(contentt)
+    }
     const moveToReview = () => {
       router.push({
         name: 'Review'
@@ -84,7 +91,9 @@ export default {
       likeCount,
       dislikeCount,
       likeuid,
-      user
+      user,
+      read,
+      contentt
     }
   }
   // components: {
