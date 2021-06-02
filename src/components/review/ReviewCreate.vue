@@ -6,32 +6,19 @@
       <form>
         <label>Title</label>
           <div class="row">
-            <div class="col-6">
-              <input type="text" class="form-control" style="width: 300px" v-model="title" required>
+            <div>
+              <input type="text" class="form-control mb-3" v-model="title" required>
             </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label>Content</label>
-                <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
+            <div>
+              <div class="mb-3">
+                <!-- <QuillEditor
+                  placeholder="내용을 입력하세요" v-model="content"  style="min-height: 150px" required
+                  :toolbar="[{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }, 'bold', 'italic', 'underline', { 'align': [] }, 'strike', { 'color': [] }, { 'background': [] }, 'image']"
+                /> -->
+                <!-- <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea> -->
               </div>
+              <!-- <input type="file" accept="image/*" @change="fileInput"> -->
             </div>
-            <!-- <Editor
-            api-key="no6didv74frqq23trdiml4inukdi4qjmeo55tsd1pnek8lod"
-            :init="{
-               height: 500,
-               menubar: false,
-               plugins: [
-                 'advlist autolink lists link image charmap print preview anchor',
-                 'searchreplace visualblocks code fullscreen',
-                 'insertdatetime media table paste code help wordcount'
-               ],
-               toolbar:
-                 'undo redo | formatselect | bold italic backcolor | \
-                 alignleft aligncenter alignright alignjustify | \
-                 bullist numlist outdent indent | removeformat | link image'
-             }"
-            /> -->
-            <!-- <input type="file" accept="image/*"> -->
           </div>
       </form>
       <div v-if="user != ''">
@@ -49,7 +36,8 @@
 import { db, auth } from '@/fdb'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-// import Editor from '@tinymce/tinymce-vue'
+// import { QuillEditor } from '@vueup/vue-quill'
+// import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export default {
   setup () {
@@ -100,7 +88,7 @@ export default {
     }
   }
   // components: {
-  //   Editor
+  //   QuillEditor
   // }
 }
 

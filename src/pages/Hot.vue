@@ -5,7 +5,7 @@
   </div>
   <hr>
   <form class="form">
-    부트스트랩
+    부트스트랩으로 수정하기@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     <div v-if="loading" class="form mt-5">
       <div class="spinner-border text-primary" role="status"></div> Loading
     </div>
