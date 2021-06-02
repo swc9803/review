@@ -35,9 +35,11 @@
           {{ content }}
         </div>
       </div>
-      <div style="text-align: center">
-        <button @click.prevent="Like" class="like">좋아요! {{ likeCount }}<i class="fas fa-heart" style="color: red"></i></button>
-        <button @click.prevent="DisLike" class="like">싫어요! {{ dislikeCount }}<i class="fas fa-heart-broken" style="color: skyblue"></i></button>
+      <div class="mt-2" style="text-align: center">
+        <span @click.prevent="Like" class="like p-1">
+          <p>좋아요 <i class="fas fa-heart" style="color: red"></i></p>{{ likeCount }}</span>
+        <span @click.prevent="DisLike" class="like p-1">
+          <p>싫어요 <i class="fas fa-heart-broken" style="color: skyblue"></i></p>{{ dislikeCount }}</span>
       </div>
       <div v-if="user.uid === uid" class="btn m-2">
         <router-link :to="{ name: 'ReviewEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>
@@ -199,8 +201,9 @@ export default {
     margin-right: 10%;
   }
   .like{
-    font-size: 17px;
-    border: 1px gray solid;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px rgb(222, 222, 222) solid;
     display: inline-block;
     margin: 1%;
   }
