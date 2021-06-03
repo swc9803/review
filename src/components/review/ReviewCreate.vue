@@ -12,7 +12,6 @@
             <div>
               <div class="mb-3">
                   <!-- placeholder="내용을 입력하세요" v-model="contentt"  style="min-height: 150px" required -->
-
                 <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
               <div>
@@ -21,10 +20,6 @@
               <div>
                 <p>Progress: {{ uploadValue.toFixed()+"%" }}
                 <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
-              </div>
-              <div v-if="imageData!=null">
-                <img class="preview" :src="picture">
-                <br>
               </div>
             </div>
           </div>
