@@ -1,24 +1,13 @@
 <template>
-    <div class="des">
-      <img style="width:100%; height:100%" src="@/assets/recruit.jpg" alt="리뷰사진">
-      <br>
-      Review 사이트입니다.
+  <div class="form mt-3">
+    <b style="font-size: 40px; color: rgb(63, 111, 170)">Review-Site</b> <br> <br>
+    <div style="font-size: 14px">
+      <p>모두가 만들어 나가는 Review-Site입니다. <br>
+      온갖 것들을 <b style="font-size: 20px">'평가'</b>하는 곳입니다. <br>
+      평가 기준은 존재하지 않으며 개인의 만족도만이 전부입니다.</p>
     </div>
-    <div class="des">
-      <img style="width:100%; height:100%" src="@/assets/why.jpg" alt="왜">
-      <br>
-      리뷰를 공유하기 위해
-    </div>
-    <div class="des">
-      <img style="width:100%; height:100%" src="@/assets/easy.jpg" alt="쉬움">
-      <br>
-      매우 쉽습니다.
-    </div>
-    <div class="des">
-      <img style="width:100%; height:100%" src="@/assets/doit.jpg" alt="해">
-      <br>
-      당장 하십시오
-    </div>
+    <img src="@/assets/review.jpg" alt="리뷰사진" style="align: right; width: 40%; height: 40%">
+  </div>
 </template>
 
 <script>
@@ -28,15 +17,10 @@ export default {
 </script>
 
 <style scoped>
-  .des{
-    margin-top: 50px;
-    width: 40%;
-    height: 40%;
-    font-size: 17px;
-    border: 1px black solid;
-    box-sizing: content-box;
-    display: inline-block;;
-    margin: 4%;
-    text-align: center;
+  .form {
+    width: 70%;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
   }
 </style>
