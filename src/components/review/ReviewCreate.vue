@@ -27,14 +27,21 @@
               <div v-if="imageData!=null">
                 <img class="preview" :src="picture">
                 <br>
-                <button @click.prevent="onUpload">Upload</button>
+                <!-- <button @click.prevent="onUpload">저장</button> -->
               </div>
             </div>
           </div>
       </form>
       <div v-if="user != ''">
-        <button class="btn btn-primary" @click="savereview">저장</button>
-        <button class="btn btn-outline-dark ml-2" @click="moveToReview">취소</button>
+        <div v-if="imageData!=null">
+          <button class="btn btn-primary" @click="onUpload">저장</button>
+          <button class="btn btn-outline-dark ml-2" @click="moveToReview">취소</button>
+        </div>
+        <div v-else>
+          <div class="card mt-2" style="text-align: center; color: white; background-color: gray">
+            이미지 첨부는 필수입니다!
+          </div>
+        </div>
       </div>
       <div v-else class="card mt-2" style="text-align: center; color: white; background-color: gray">
         글을 작성하시려면 로그인을 해주세요!
@@ -53,10 +60,6 @@ import { ref } from 'vue'
 export default {
   setup () {
     const router = useRouter()
-    const currentDate = new Date()
-    const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
-    const updatedAt = createdAt
-    const views = 0
     const title = ref('')
     const content = ref('')
     const likeCount = 0
@@ -69,27 +72,9 @@ export default {
         name: 'Review'
       })
     }
-    const savereview = async () => {
-      if (title.value === '' || content.value === '') {
-        alert('내용을 전부 입력해주세요!')
-      } else {
-        const uid = auth.currentUser.uid
-        const name = auth.currentUser.displayName
-        await db.collection('reviews').add(
-          {
-            title: title.value, content: content.value, createdAt, updatedAt, uid, name, views, likeCount, dislikeCount, likeuid
-          }
-        )
-        alert('작성 완료!')
-        router.push({
-          name: 'Review'
-        })
-      }
-    }
 
     return {
       moveToReview,
-      savereview,
       title,
       content,
       likeCount,
@@ -122,10 +107,55 @@ export default {
         this.uploadValue = 100
         storageRef.snapshot.ref.getDownloadURL().then((url) => {
           this.picture = url
+          const currentDate = new Date()
+          const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
+          const updatedAt = createdAt
+          const views = 0
+          const likeCount = 0
+          const dislikeCount = 0
+          const likeuid = []
+          if (this.title === '' || this.content === '') {
+            alert('내용을 전부 입력해주세요!')
+          } else {
+            const uid = auth.currentUser.uid
+            const name = auth.currentUser.displayName
+            db.collection('reviews').add(
+              {
+                title: this.title, content: this.content, createdAt, updatedAt, uid, name, views, likeCount, dislikeCount, likeuid, url
+              }
+            )
+            alert('작성 완료!')
+            this.$router.push({
+              name: 'Review'
+            })
+          }
         })
-      }
-      )
+      })
     }
+    // async savereview () {
+    //   const currentDate = new Date()
+    //   const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
+    //   const updatedAt = createdAt
+    //   const views = 0
+    //   const likeCount = 0
+    //   const dislikeCount = 0
+    //   const likeuid = []
+    //   if (this.title === '' || this.content === '') {
+    //     alert('내용을 전부 입력해주세요!')
+    //   } else {
+    //     const uid = auth.currentUser.uid
+    //     const name = auth.currentUser.displayName
+    //     await db.collection('reviews').add(
+    //       {
+    //         title: this.title, content: this.content, createdAt, updatedAt, uid, name, views, likeCount, dislikeCount, likeuid
+    //       }
+    //     )
+    //     alert('작성 완료!')
+    //     this.$router.push({
+    //       name: 'Review'
+    //     })
+    //   }
+    // }
   }
   // components: {
   //   QuillEditor

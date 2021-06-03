@@ -31,9 +31,10 @@
           </div>
         </div>
       <div class="card mt-4" style="min-height: 100px">
-        <div class="ml-2" style="white-space: pre-line">
+        <p class="ml-2" style="white-space: pre-line">
           {{ content }}
-        </div>
+          {{ url }}
+        </p>
       </div>
       <div class="mt-2" style="text-align: center">
         <span @click.prevent="Like" class="like p-1">
@@ -87,6 +88,7 @@ export default {
     const views = ref('')
     const likeCount = ref('')
     const dislikeCount = ref('')
+    const url = ref('')
 
     onMounted(async () => {
       const reviewinfo = db.collection('reviews').doc(route.params.id)
@@ -100,6 +102,7 @@ export default {
       views.value = doc.data().views
       likeCount.value = doc.data().likeCount
       dislikeCount.value = doc.data().dislikeCount
+      url.value = doc.data().url
       await db.collection('reviews').doc(route.params.id).update(
         {
           views: (views.value + 1)
@@ -162,7 +165,8 @@ export default {
       Like,
       DisLike,
       likeCount,
-      dislikeCount
+      dislikeCount,
+      url
     }
   },
   components: {
