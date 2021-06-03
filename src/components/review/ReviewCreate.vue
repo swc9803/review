@@ -14,11 +14,21 @@
                 <!-- <QuillEditor
                   placeholder="내용을 입력하세요" v-model="contentt"  style="min-height: 150px" required
                   :toolbar="[{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }, 'bold', 'italic', 'underline', { 'align': [] }, 'strike', { 'color': [] }, { 'background': [] }, 'image']"
-                />
-                <button @click.prevent="read">read</button> -->
+                /> -->
                 <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
-              <!-- <input type="file" accept="image/*" @change="fileInput"> -->
+              <div>
+                <input type="file" accept="image/*" @change="previewImage">
+              </div>
+              <div>
+                <p>Progress: {{ uploadValue.toFixed()+"%" }}
+                <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
+              </div>
+              <div v-if="imageData!=null">
+                <img class="preview" :src="picture">
+                <br>
+                <button @click.prevent="onUpload">Upload</button>
+              </div>
             </div>
           </div>
       </form>
@@ -34,7 +44,7 @@
 </template>
 
 <script>
-import { db, auth } from '@/fdb'
+import { db, auth, storage } from '@/fdb'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 // import { QuillEditor } from '@vueup/vue-quill'
@@ -49,17 +59,11 @@ export default {
     const views = 0
     const title = ref('')
     const content = ref('')
-    const contentt = ref('')
     const likeCount = 0
     const dislikeCount = 0
     const likeuid = []
     const user = auth.currentUser
 
-    const read = () => {
-      console.log(title)
-      console.log(content)
-      console.log(contentt)
-    }
     const moveToReview = () => {
       router.push({
         name: 'Review'
@@ -91,9 +95,36 @@ export default {
       likeCount,
       dislikeCount,
       likeuid,
-      user,
-      read,
-      contentt
+      user
+    }
+  },
+  name: 'Upload',
+  data () {
+    return {
+      imageData: null,
+      picture: null,
+      uploadValue: 0
+    }
+  },
+  methods: {
+    previewImage (event) {
+      this.uploadValue = 0
+      this.picture = null
+      this.imageData = event.target.files[0]
+    },
+    onUpload () {
+      this.picture = null
+      const storageRef = storage.ref(`${this.imageData.name}`).put(this.imageData)
+      storageRef.on('state_changed', snapshot => {
+        this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      }, error => { console.log(error.message) },
+      () => {
+        this.uploadValue = 100
+        storageRef.snapshot.ref.getDownloadURL().then((url) => {
+          this.picture = url
+        })
+      }
+      )
     }
   }
   // components: {
@@ -111,6 +142,10 @@ export default {
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+  }
+
+  img.preview {
+      width: 200px;
   }
 
 </style>
