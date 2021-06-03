@@ -3,7 +3,7 @@
     <div class="form mt-3">
       <img class="mt-5" src="@/assets/review.jpg" alt="리뷰사진" style="float: right; width: 40%">
       <br><br><br><br>
-      <div style="font-size: 14px; display: inline-block">
+      <div class="ml-5" style="font-size: 14px; display: inline-block">
         <b style="font-size: 40px; color: rgb(63, 111, 170)">Review-Site</b> <br><br>
         <p>모두가 만들어 나가는 Review-Site입니다. <br>
         온갖 것들을 <b class="" style="font-size: 20px">'평가'</b>하는 장소입니다. <br>
