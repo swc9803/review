@@ -11,10 +11,8 @@
             </div>
             <div>
               <div class="mb-3">
-                <!-- <QuillEditor
-                  placeholder="내용을 입력하세요" v-model="contentt"  style="min-height: 150px" required
-                  :toolbar="[{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }, 'bold', 'italic', 'underline', { 'align': [] }, 'strike', { 'color': [] }, { 'background': [] }, 'image']"
-                /> -->
+                  <!-- placeholder="내용을 입력하세요" v-model="contentt"  style="min-height: 150px" required -->
+
                 <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
               <div>
@@ -27,7 +25,6 @@
               <div v-if="imageData!=null">
                 <img class="preview" :src="picture">
                 <br>
-                <!-- <button @click.prevent="onUpload">저장</button> -->
               </div>
             </div>
           </div>
@@ -54,8 +51,6 @@
 import { db, auth, storage } from '@/fdb'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-// import { QuillEditor } from '@vueup/vue-quill'
-// import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export default {
   setup () {
@@ -132,33 +127,9 @@ export default {
         })
       })
     }
-    // async savereview () {
-    //   const currentDate = new Date()
-    //   const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
-    //   const updatedAt = createdAt
-    //   const views = 0
-    //   const likeCount = 0
-    //   const dislikeCount = 0
-    //   const likeuid = []
-    //   if (this.title === '' || this.content === '') {
-    //     alert('내용을 전부 입력해주세요!')
-    //   } else {
-    //     const uid = auth.currentUser.uid
-    //     const name = auth.currentUser.displayName
-    //     await db.collection('reviews').add(
-    //       {
-    //         title: this.title, content: this.content, createdAt, updatedAt, uid, name, views, likeCount, dislikeCount, likeuid
-    //       }
-    //     )
-    //     alert('작성 완료!')
-    //     this.$router.push({
-    //       name: 'Review'
-    //     })
-    //   }
-    // }
   }
   // components: {
-  //   QuillEditor
+  //   VueEditor
   // }
 }
 
