@@ -14,7 +14,7 @@
     </div>
     <div v-else v-for="(review, i) in reviews" :key="review.id" class="card mt-3 ml-5 mr-5">
       <div class="ml-2" style="cursor: pointer" @click="moveToPage(review.id)">
-        {{ review.title }} <img :src='review.url' style="width: 30%" />
+        {{ review.title }} <img :src='review.url' style="width: 20%" />
         <em v-if="review.createdAt !== review.updatedAt" class="badge bg-warning" style="font-size: 17px">수정됨</em>
         <span class="writer mt-2 mr-3" style="float: right">
           <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">{{ review.name }}</span>

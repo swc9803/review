@@ -33,7 +33,7 @@
       <div class="card mt-4" style="min-height: 100px">
         <p class="ml-2 mr-2" style="white-space: pre-line">
           {{ content }}
-          <img :src='url' style="width: 100%" />
+          <img :src='url' style="width: 80%" />
         </p>
       </div>
       <div class="mt-2" style="text-align: center">
