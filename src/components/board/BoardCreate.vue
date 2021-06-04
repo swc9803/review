@@ -35,7 +35,6 @@ import { ref } from 'vue'
 
 export default {
   setup () {
-    const user = auth.currentUser
     const router = useRouter()
     const currentDate = new Date()
     const createdAt = currentDate.getFullYear() + '.' + ('0' + (1 + currentDate.getMonth())).slice(-2) + '.' + ('0' + currentDate.getDate()).slice(-2) + '  ' + ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + currentDate.getMinutes()).slice(-2) + ':' + ('0' + currentDate.getSeconds()).slice(-2)
@@ -71,9 +70,22 @@ export default {
       moveToBoard,
       saveform,
       title,
-      content,
-      user
+      content
     }
+  },
+  data () {
+    return {
+      user: ''
+    }
+  },
+  mounted () {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
+      } else {
+        this.user = ''
+      }
+    })
   }
 }
 </script>
