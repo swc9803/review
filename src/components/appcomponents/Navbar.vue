@@ -30,20 +30,22 @@
     </div>
     <div v-else>
       <div v-if="user == ''">
-        <button style="width:100px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
+        <button style="font-size: 14px; width: 95px; height: 35px" @click="moveToLogin" class="fa fa-sign-in btn btn-primary mr-3">
           로그인
         </button>
         <div>
-          <button style="width:100px; height: 35px" @click="moveToSignUp" class="btn btn-secondary">
+          <button style="font-size: 14px; width: 95px; height: 35px" @click="moveToSignUp" class="btn btn-secondary">
             회원가입
           </button>
         </div>
       </div>
       <div v-else>
         <div class="mr-2">
-          <p class="email"><i class="fas fa-user mr-1" style="color: blue"></i>{{ user.displayName }}님 안녕하세요</p>
+          <p class="email" style="font-size: 15px">
+            <i class="fas fa-user mr-1" style="color: blue"></i>{{ user.displayName }}님 안녕하세요
+          </p>
         </div>
-        <button class="btn btn-dark btn-block" style="width: 100px" @click="openModal">
+        <button class="btn btn-dark btn-block" style="font-size: 14px; width: 85px" @click="openModal">
           로그아웃
         </button>
       </div>
