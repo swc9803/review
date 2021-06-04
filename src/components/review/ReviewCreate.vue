@@ -15,11 +15,10 @@
                 <textarea class="form-control" cols="30" rows="10" v-model="content" placeholder="내용을 입력하세요" required></textarea>
               </div>
               <div>
-                <input type="file" accept="image/*" @change="previewImage">
+                <input class="form-control form-control-sm" type="file" accept="image/*" @change="previewImage">
               </div>
               <div>
-                <p>Progress: {{ uploadValue.toFixed()+"%" }}
-                <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
+                <p>Progress: {{ uploadValue.toFixed()+"%" }}</p>
               </div>
             </div>
           </div>
@@ -55,7 +54,6 @@ export default {
     const likeCount = 0
     const dislikeCount = 0
     const likeuid = []
-    const user = auth.currentUser
 
     const moveToReview = () => {
       router.push({
@@ -69,13 +67,13 @@ export default {
       content,
       likeCount,
       dislikeCount,
-      likeuid,
-      user
+      likeuid
     }
   },
   name: 'Upload',
   data () {
     return {
+      user: '',
       imageData: null,
       picture: null,
       uploadValue: 0
@@ -122,6 +120,15 @@ export default {
         })
       })
     }
+  },
+  mounted () {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
+      } else {
+        this.user = ''
+      }
+    })
   }
   // components: {
   //   VueEditor

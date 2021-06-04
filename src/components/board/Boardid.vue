@@ -113,8 +113,6 @@ export default {
         router.push({
           name: 'Board'
         })
-      }).catch((error) => {
-        console.error('Error removing document: ', error)
       })
     }
     const UpdateForm = () => {

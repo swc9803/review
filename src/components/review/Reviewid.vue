@@ -124,8 +124,6 @@ export default {
         router.push({
           name: 'Review'
         })
-      }).catch((error) => {
-        console.error('Error removing document: ', error)
       })
     }
     const Updatereview = () => {

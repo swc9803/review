@@ -27,7 +27,7 @@
               </p>
             </span>
           <div class="card mb-2 ml-2 mr-2">
-            <span class="ml-2" style="font-size: 17px">
+            <span class="ml-2" style="font-size: 17px; white-space: pre-line">
               {{ comment.comment }}
             </span>
           </div>
