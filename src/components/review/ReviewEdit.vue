@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="center">
     <div class="form">
     <h1 class="mt-2">글 수정하기</h1>
     <hr>
@@ -120,5 +120,11 @@ export default {
 <style scoped>
   .form {
     margin-left: 60px;
+  }
+  .center {
+    width: 70%;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
   }
 </style>

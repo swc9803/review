@@ -1,5 +1,5 @@
 <template>
-  <div class="ss">
+  <div class="center">
     <div class="form">
       <h1 class="mt-2">글 작성하기</h1>
       <hr>
@@ -140,13 +140,12 @@ export default {
   .form {
     margin-left: 60px;
   }
-  .ss {
+  .center {
     width: 70%;
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
   }
-
   img.preview {
       width: 200px;
   }
