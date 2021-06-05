@@ -100,9 +100,11 @@ export default {
       createdAt.value = doc.data().createdAt
       updatedAt.value = doc.data().updatedAt
       views.value = doc.data().views
-      likeCount.value = doc.data().likeCount
-      dislikeCount.value = doc.data().dislikeCount
       url.value = doc.data().url
+      await db.collection('reviews').doc(route.params.id).onSnapshot((doc) => {
+        likeCount.value = doc.data().likeCount
+        dislikeCount.value = doc.data().dislikeCount
+      })
       await db.collection('reviews').doc(route.params.id).update(
         {
           views: (views.value + 1)
@@ -153,6 +155,8 @@ export default {
       closeModal,
       Deletereview,
       Updatereview,
+      Like,
+      DisLike,
       uid,
       name,
       title,
@@ -160,8 +164,6 @@ export default {
       createdAt,
       updatedAt,
       views,
-      Like,
-      DisLike,
       likeCount,
       dislikeCount,
       url
@@ -205,8 +207,11 @@ export default {
   .like{
     cursor: pointer;
     font-size: 12px;
-    border: 1px rgb(222, 222, 222) solid;
+    border: 2px rgb(222, 222, 222) solid;
     display: inline-block;
     margin: 1%;
+  }
+  .like:hover {
+    background: hsla(224, 74%, 63%, 0.25);
   }
 </style>
