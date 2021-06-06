@@ -12,6 +12,7 @@ import SignUp from '@/components/SignUp'
 import ReviewCreate from '@/components/review/ReviewCreate'
 import Reviewid from '@/components/review/Reviewid'
 import ReviewEdit from '@/components/review/ReviewEdit'
+import ReviewSearch from '@/components/review/ReviewSearch'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,6 +21,11 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/reviewsearch',
+      name: 'ReviewSearch',
+      component: ReviewSearch
     },
     {
       path: '/review',

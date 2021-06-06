@@ -16,18 +16,18 @@
           <div class="ml-2 mb-1">
             <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">
               {{ name }}
+            </span>
+            <span class="date mr-3 mt-2">
+              <span>
+                조회수 {{ views }}
               </span>
-              <span class="date mr-3 mt-2">
-                <span>
-                  조회수 {{ views }}
-                </span>
-                <span class="ml-1">
-                  작성일 : {{ createdAt }}
-                </span>
-                <span v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
-                  수정일 : {{ updatedAt }}
-                </span>
+              <span class="ml-1">
+                작성일 : {{ createdAt }}
               </span>
+              <span v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
+                수정일 : {{ updatedAt }}
+              </span>
+            </span>
           </div>
         </div>
       <div class="card mt-4" style="height: 400px">

@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
-  <h2 class="mt-3">Review</h2>
-  <span @click="MoveToSearch" style="cursor: pointer"><i class="fas fa-search"></i>검색</span>
-    <p v-if="loading"></p>
-    <p v-else style="float: right">총 {{ reviews.length }}개의 리뷰가 있습니다.</p>
-    <button class="btn btn-outline-info" @click="moveToCreate">
-      글 작성하기
-    </button>
+  <input
+    class="form-control"
+    type="text"
+    v-model="searchText"
+    placeholder="제목 또는 내용으로 검색"
+    @keyup.enter="searchReview"
+  >
+  <div v-if="!reviews.length">
+    검색된 게시글이 없습니다.
   </div>
-  <hr>
-  <form class="form">
+  <form v-else class="form">
     <div v-if="loading" class="form mt-5">
       <div class="spinner-border text-primary" role="status"></div> Loading
     </div>
@@ -38,27 +38,36 @@
     </div>
   </form>
 </template>
+
 <script>
 import { db } from '@/fdb'
 import { useRouter } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 export default {
   setup () {
     const loading = ref(true)
     const reviews = ref([])
+    const searchText = ref('')
     const router = useRouter()
 
-    onMounted(async () => {
-      const sn = await db.collection('reviews').orderBy('createdAt', 'desc').get()
+    const searchReview = async () => {
+      const sn = await db.collection('reviews').where('content', '==', searchText.value).orderBy('createdAt', 'desc').get()
       sn.forEach(doc => {
         const { title, content, createdAt, updatedAt, name, views, likeCount, url } = doc.data()
         reviews.value.push({
           title, content, id: doc.id, createdAt, updatedAt, name, views, likeCount, url
         })
       })
+      const snap = await db.collection('reviews').where('title', '==', searchText.value).orderBy('createdAt', 'desc').get()
+      snap.forEach(doc => {
+        const { title, content, createdAt, updatedAt, name, views, likeCount, url } = doc.data()
+        reviews.value.push({
+          title, content, id: doc.id, createdAt, updatedAt, name, views, likeCount, url
+        })
+      })
       loading.value = false
-    })
+    }
 
     const moveToPage = (Reviewid) => {
       router.push({
@@ -68,29 +77,19 @@ export default {
         }
       })
     }
-    const moveToCreate = () => {
-      router.push({
-        name: 'ReviewCreate'
-      })
-    }
-    const MoveToSearch = () => {
-      router.push({
-        name: 'ReviewSearch'
-      })
-    }
 
     return {
-      moveToPage,
-      moveToCreate,
-      MoveToSearch,
+      searchText,
+      searchReview,
       reviews,
-      loading
+      loading,
+      moveToPage
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
  table, th, td {
   margin: auto;
   font-size: 20px;

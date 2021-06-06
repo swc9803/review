@@ -16,31 +16,33 @@
           <div class="ml-2 mb-1">
             <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">
               {{ name }}
+            </span>
+            <span class="date mr-3 mt-2">
+              <span>
+                조회수 {{ views }}
               </span>
-              <span class="date mr-3 mt-2">
-                <span>
-                  조회수 {{ views }}
-                </span>
-                <span class="ml-1">
-                  작성일 : {{ createdAt }}
-                </span>
-                <span v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
-                  수정일 : {{ updatedAt }}
-                </span>
+              <span class="ml-1">
+                작성일 : {{ createdAt }}
               </span>
+              <span v-if="createdAt !== updatedAt" class="ml-1" style="text-decoration:underline">
+                수정일 : {{ updatedAt }}
+              </span>
+            </span>
           </div>
         </div>
       <div class="card mt-4" style="min-height: 100px">
         <p class="ml-2 mr-2" style="white-space: pre-line">
-          {{ content }}
-          <img :src='url' style="width: 80%" />
+          {{ content }} <br>
+          <img :src='url' style="width: 70%" />
         </p>
       </div>
       <div class="mt-2" style="text-align: center">
         <span @click.prevent="Like" class="like p-1">
-          <p>좋아요 <i class="fas fa-heart" style="color: red"></i></p>{{ likeCount }}</span>
+          <p>좋아요 <i class="fas fa-heart" style="color: red"></i></p>{{ likeCount }}
+        </span>
         <span @click.prevent="DisLike" class="like p-1">
-          <p>싫어요 <i class="fas fa-heart-broken" style="color: skyblue"></i></p>{{ dislikeCount }}</span>
+          <p>싫어요 <i class="fas fa-heart-broken" style="color: skyblue"></i></p>{{ dislikeCount }}
+        </span>
       </div>
       <div v-if="user.uid === uid" class="btn m-2">
         <router-link :to="{ name: 'ReviewEdit'}"><button class="btn btn-secondary mr-0">수정</button></router-link>

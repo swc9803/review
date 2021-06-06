@@ -2,8 +2,8 @@
     <div class="signup">
       <p>Sign Up</p>
       <input class="left" type="text" style="width:300px" v-model="name" placeholder="성함"> <br>
-      <input class="left" type="text" style="width:300px" v-model="email" placeholder="이메일"> <br>
-      <input class="left" type="password" style="width:300px" v-model="password" placeholder="패스워드" @keypress.enter="SignUp"> <br>
+      <input class="left" type="text" style="width:300px" v-model="email" placeholder="example@example.com"> <br>
+      <input class="left" type="password" style="width:300px" v-model="password" placeholder="최소 6자 이상 작성해주세요!" @keypress.enter="SignUp"> <br>
       <button class="btn btn-primary" style="width:100px" @click="SignUp"><i class="glyphicon glyphicon-pencil"></i>회원가입</button>
       <h6>이미 가입된 아이디가 있으신가요?</h6>
       <router-link :to="{ name: 'Login'}">로그인 하러 가기</router-link>
