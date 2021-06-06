@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-  <h2 class="mt-3">Review</h2>
-  <span @click="MoveToSearch" style="cursor: pointer"><i class="fas fa-search"></i>검색</span>
+  <h2 class="mt-3">Review
+    <span @click="MoveToSearch" class="search">
+      <i class="fas fa-search ml-4"></i>검색
+    </span>
+  </h2>
     <p v-if="loading"></p>
     <p v-else style="float: right">총 {{ reviews.length }}개의 리뷰가 있습니다.</p>
     <button class="btn btn-outline-info" @click="moveToCreate">
@@ -91,11 +94,6 @@ export default {
 </script>
 
 <style scoped>
- table, th, td {
-  margin: auto;
-  font-size: 20px;
-  border: 1px solid;
- }
  .date {
   font-size: 14px;
   text-align: right;
@@ -113,5 +111,11 @@ export default {
  .writer {
   font-size: 20px;
   text-align: right
+ }
+ .search {
+  cursor: pointer;
+  position: absolute;
+  right: 23%;
+  font-size: 24px;
  }
 </style>

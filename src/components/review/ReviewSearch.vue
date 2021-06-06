@@ -1,15 +1,16 @@
 <template>
   <input
-    class="form-control"
+    class="form-control form mt-4"
     type="text"
     v-model="searchText"
     placeholder="제목 또는 내용으로 검색"
     @keyup.enter="searchReview"
   >
-  <div v-if="!reviews.length">
+  <div v-if="!reviews.length" class="form">
     검색된 게시글이 없습니다.
   </div>
   <form v-else class="form">
+    <p style="float: right; font-size: 18px">{{ reviews.length }}개의 리뷰가 검색되었습니다.</p> <br>
     <div v-if="loading" class="form mt-5">
       <div class="spinner-border text-primary" role="status"></div> Loading
     </div>
@@ -90,11 +91,6 @@ export default {
 </script>
 
 <style>
- table, th, td {
-  margin: auto;
-  font-size: 20px;
-  border: 1px solid;
- }
  .date {
   font-size: 14px;
   text-align: right;
