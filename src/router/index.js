@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/home'
 import Review from '../pages/Review'
-import PlzReview from '../pages/PlzReview'
 import Hot from '../pages/Hot'
 import Board from '../pages/Board'
 import BoardCreate from '@/components/board/BoardCreate'
@@ -31,11 +30,6 @@ const router = createRouter({
       path: '/review',
       name: 'Review',
       component: Review
-    },
-    {
-      path: '/plzreview',
-      name: 'PlzReview',
-      component: PlzReview
     },
     {
       path: '/hot',

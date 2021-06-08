@@ -1,11 +1,14 @@
 <template>
   <div class="container">
-  <h2><i class="fas fa-fire mt-3" style="color: red"></i><b>인기 순</b></h2>
+  <h2><i class="fas fa-fire mt-3" style="color: red"></i><b>인기 순</b>
+    <span @click="MoveToSearch" class="search mt-4">
+      <i class="fas fa-search ml-4"></i>검색
+    </span>
+  </h2>
     <p v-if="loading"></p>
   </div>
   <hr>
   <form class="form">
-    부트스트랩으로 수정하기@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     <div v-if="loading" class="form mt-5">
       <div class="spinner-border text-primary" role="status"></div> Loading
     </div>
@@ -18,7 +21,7 @@
           <span class="badge rounded-pill bg-primary" style="font-size: 20px; color: white">{{ review.name }}</span>
         </span>
         <div>
-          <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ reviews.length - i }}</p>
+          <p class="index ml-1 mt-4" style="color: deepskyblue; font-size: 17px; float: left">No.{{ i + 1 }}</p>
           <div style="font-size: 15px">
             <i class="fas fa-heart mr-3 ml-2 mt-1" style="color: red; float: right">
               <span style="color: black">{{ review.likeCount }}</span>
@@ -64,9 +67,15 @@ export default {
         }
       })
     }
+    const MoveToSearch = () => {
+      router.push({
+        name: 'ReviewSearch'
+      })
+    }
 
     return {
       moveToPage,
+      MoveToSearch,
       reviews,
       loading
     }
@@ -97,5 +106,11 @@ export default {
  .writer {
   font-size: 20px;
   text-align: right
+ }
+ .search {
+  cursor: pointer;
+  position: absolute;
+  right: 23%;
+  font-size: 24px;
  }
 </style>

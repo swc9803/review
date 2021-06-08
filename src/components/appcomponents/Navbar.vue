@@ -15,13 +15,8 @@
         </router-link>
       </li>
       <li class="nav-item active">
-        <router-link class="nav-link" :to="{ name: 'PlzReview'}">
-          PlzReview
-        </router-link>
-      </li>
-      <li class="nav-item active">
         <router-link class="nav-link" :to="{ name: 'Board'}">
-          Board
+          PlzReview
         </router-link>
       </li>
     </ul>
