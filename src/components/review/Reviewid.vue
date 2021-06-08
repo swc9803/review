@@ -136,18 +136,14 @@ export default {
       })
     }
     const Like = async () => {
-      await db.collection('reviews').doc(route.params.id).update(
-        {
-          likeCount: (likeCount.value + 1)
-        }
-      )
+      await db.collection('reviews').doc(route.params.id).update({
+        likeCount: (likeCount.value + 1)
+      })
     }
     const DisLike = async () => {
-      await db.collection('reviews').doc(route.params.id).update(
-        {
-          dislikeCount: (dislikeCount.value + 1)
-        }
-      )
+      await db.collection('reviews').doc(route.params.id).update({
+        dislikeCount: (dislikeCount.value + 1)
+      })
     }
 
     return {
